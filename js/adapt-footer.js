@@ -106,6 +106,8 @@ define(function(require) {
 		position: function() {
 			var pages = _.keys(this.menuStructure[this.state.currentMenu.get("_id")]);
 			var indexOfPage = pages.indexOf(this.state.currentPage.model.get("_id"));
+			this.state.isFirstPage = false;
+			this.state.isLastPage = false;
 			if (this.config._isContinuous == "local" || this.config._isContinuous == "global" ) {
 				if (indexOfPage === 0 && indexOfPage == pages.length - 1 && this.config._isContinuous == "local") {
 					this.state.isFirstPage = true;
