@@ -3,6 +3,7 @@
 "_footer": {
     "_isEnabled": true,
     "_isContinuous": "global",  //global (loop through menus+pages) / local (loop through pages ) / false (disable next+prev buttons at start and end)
+    "_injectIntoSelector": "", //force append to selector instead of page
     "_global": { //change the flow for global continuous
         "_pageNext":"co-10", // remove if to follow normal flow
         "_pagePrevious": "co-10" // remove if to follow normal flow
