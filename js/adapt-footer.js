@@ -196,7 +196,14 @@ define(function(require) {
 		var footerView = new FooterView({model:{ config: footer.config, state: footer.state}});
 		footerView.parent = footer;
 		footerView.undelegateEvents();
-		element.append(footerView.$el);
+
+		var injectInto = element.find(footer.config._injectIntoSelector);
+		if (injectInto.length > 0) {
+			injectInto.append(footerView.$el);
+		} else {
+			element.append(footerView.$el);
+		}
+		
 		footerView.delegateEvents();
 
 
