@@ -1,3 +1,9 @@
+/*
+* adapt-learnerassistant
+* License - http://github.com/adaptlearning/adapt_framework/LICENSE
+* Maintainers - Oliver Foster <oliver.foster@kineo.com>
+*/
+
 // To go in the contentObject.json file
 // for each page
 "_footer": {
