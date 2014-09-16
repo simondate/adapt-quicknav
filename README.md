@@ -1,4 +1,4 @@
-adapt-footer
+adapt-quicknav
 ================
 
-Page footer
+Page quicknav

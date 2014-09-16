@@ -1,11 +1,11 @@
 {
-  "name": "adapt-footer",
-  "homepage": "https://github.com/cgkineo/adapt-footer",
+  "name": "adapt-quicknav",
+  "homepage": "https://github.com/cgkineo/adapt-quicknav",
   "authors": [
     "Oliver Foster <oliver.foster@kineo.com"
   ],
-  "description": "%description",
-  "main": "/js/adapt-footer.js",
+  "description": "",
+  "main": "/js/adapt-quicknav.js",
   "keywords": [
     "adapt-plugin",
     "adapt-extension"

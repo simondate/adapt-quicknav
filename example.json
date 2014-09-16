@@ -1,12 +1,12 @@
 /*
-* adapt-learnerassistant
+* adapt-quicknav
 * License - http://github.com/adaptlearning/adapt_framework/LICENSE
 * Maintainers - Oliver Foster <oliver.foster@kineo.com>
 */
 
 // To go in the contentObject.json file
 // for each page
-"_footer": {
+"_quicknav": {
     "_isEnabled": true,
     "_isContinuous": "global",  //global (loop through menus+pages) / local (loop through pages ) / false (disable next+prev buttons at start and end)
     "_injectIntoSelector": "", //force append to selector instead of page

@@ -1,5 +1,5 @@
 /*
-* adapt-learnerassistant
+* adapt-quicknav
 * License - http://github.com/adaptlearning/adapt_framework/LICENSE
 * Maintainers - Oliver Foster <oliver.foster@kineo.com>
 */
@@ -8,9 +8,9 @@ define(function(require) {
 
 	var Adapt = require('coreJS/adapt');
 	var Backbone = require('backbone');
-	var FooterView = require('extensions/adapt-footer/js/adapt-footer-view');
+	var QuickNavView = require('extensions/adapt-quicknav/js/adapt-quicknav-view');
 
-	var footer = Backbone.View.extend({
+	var quicknav = Backbone.View.extend({
 		config: undefined,
 		state: {
 			lastBlock: undefined,
@@ -74,7 +74,7 @@ define(function(require) {
 			Backbone.history.navigate("#/id/" + pages[indexOfPage], {trigger: true, replace: true});
 		},
 		onUpClicked: function() {
-			var parentId = footer.state.currentPage.model.get("_parentId");
+			var parentId = quicknav.state.currentPage.model.get("_parentId");
 			Backbone.history.navigate("#/id/" + parentId, {trigger: true, replace: true});
 		},
 		onNextClicked: function() {
@@ -156,60 +156,60 @@ define(function(require) {
 
 		}
 	});
-	footer = new footer();
+	quicknav = new quicknav();
 
 	Adapt.on("app:dataReady", function() {
 		var menus = Adapt.contentObjects.where({_type: "menu"});
 		_.each(menus, function(menu) {
 			var id = menu.get("_id");
-			footer.menuStructure[id] = {};
+			quicknav.menuStructure[id] = {};
 			var pages = Adapt.contentObjects.where({_type: "page", _parentId: id });
 			_.each(pages, function(page) {
-				footer.menuStructure[id][page.get("_id")] = page;
+				quicknav.menuStructure[id][page.get("_id")] = page;
 			});
 		});
 	});
 
 	Adapt.on("pageView:postRender", function(pageView) {
 		var pageModel = pageView.model;
-		if (pageModel.get("_footer") === undefined) return;
-		var config = pageModel.get("_footer");
+		if (pageModel.get("_quicknav") === undefined) return;
+		var config = pageModel.get("_quicknav");
 		if (config._isEnabled !== true && config._isEnabled !== undefined) return;
 
 		var blocks = pageModel.findDescendants("blocks");
 
 		var parentId = pageModel.get("_parentId");
-		footer.state.currentMenu = Adapt.contentObjects.findWhere({_id: parentId});
-		footer.state.currentPage = pageView;
-		footer.state.lastBlock = blocks.last();
-		footer.config = config;
+		quicknav.state.currentMenu = Adapt.contentObjects.findWhere({_id: parentId});
+		quicknav.state.currentPage = pageView;
+		quicknav.state.lastBlock = blocks.last();
+		quicknav.config = config;
 	});
 
 	Adapt.on('blockView:postRender', function(blockView) {
-		if (footer.state.lastBlock === undefined) return;
-		if (blockView.model.get("_id") !== footer.state.lastBlock.get("_id")) return;
+		if (quicknav.state.lastBlock === undefined) return;
+		if (blockView.model.get("_id") !== quicknav.state.lastBlock.get("_id")) return;
 
 		var element = blockView.$el.parent();
 
-		footer.position();
+		quicknav.position();
 
-		var footerView = new FooterView({model:{ config: footer.config, state: footer.state}});
-		footerView.parent = footer;
-		footerView.undelegateEvents();
+		var quickNavView = new QuickNavView({model:{ config: quicknav.config, state: quicknav.state}});
+		quickNavView.parent = quicknav;
+		quickNavView.undelegateEvents();
 
-		var injectInto = element.find(footer.config._injectIntoSelector);
+		var injectInto = element.find(quicknav.config._injectIntoSelector);
 		if (injectInto.length > 0) {
-			injectInto.append(footerView.$el);
+			injectInto.append(quickNavView.$el);
 		} else {
-			element.append(footerView.$el);
+			element.append(quickNavView.$el);
 		}
 		
-		footerView.delegateEvents();
+		quickNavView.delegateEvents();
 
 
 
 	});
 
-	return footer;
+	return quicknav;
 
 })

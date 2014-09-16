@@ -1,5 +1,5 @@
 /*
-* adapt-learnerassistant
+* adapt-quicknav
 * License - http://github.com/adaptlearning/adapt_framework/LICENSE
 * Maintainers - Oliver Foster <oliver.foster@kineo.com>
 */
@@ -9,18 +9,18 @@ define(function(require) {
 	var Backbone = require('backbone');
 	var Adapt = require('coreJS/adapt');
 
-	var footerView = Backbone.View.extend({
+	var QuickNavView = Backbone.View.extend({
 		initialize: function() {
 			this.listenTo(Adapt, 'remove', this.remove);
 			this.render();
 		},
 		render: function() {
-	        var template = Handlebars.templates["footer"];
+	        var template = Handlebars.templates["quicknav"];
 	        this.$el.html(template(this.model));
 	        return this;
 		},
 
-		className: "block footer",
+		className: "block quicknav",
 
 		events: {
 			"click #root": "onRootClicked",
@@ -44,6 +44,6 @@ define(function(require) {
 
 	});
 
-	return footerView;
+	return QuickNavView;
 })
 	

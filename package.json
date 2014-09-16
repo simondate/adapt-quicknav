@@ -1,19 +1,19 @@
 {
-  "name": "adapt-footer",
+  "name": "adapt-quicknav",
   "version": "0.0.1",
-  "description": "Page footer",
+  "description": "Page quicknav",
   "main": "",
   "scripts": {
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cgkineo/adapt-footer.git"
+    "url": "git://github.com/cgkineo/adapt-quicknav.git"
   },
   "author": "Oliver Foster <oliver.foster@kineo.com>",
   "license": "GPL v3",
   "bugs": {
-    "url": "https://github.com/cgkineo/adapt-footer/issues"
+    "url": "https://github.com/cgkineo/adapt-quicknav/issues"
   },
   "devDependencies": {
     "karma": "~0.10",
