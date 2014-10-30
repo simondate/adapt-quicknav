@@ -33,3 +33,16 @@
         }
     }
 }
+
+//to go in components.json
+//if you want a component in which to place the quicknav, please add:
+//NOTE: please remove _injectIntoSelector from above
+{
+	"_id": "c-61",
+	"_parentId": "b-48",
+	"_type": "component",
+	"_component": "quicknav",
+	"_classes": "",
+	"_layout": "full",
+	"title": "c-48"
+},
