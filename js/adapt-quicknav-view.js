@@ -13,9 +13,32 @@ define(function(require) {
 		initialize: function() {
 			this.listenTo(Adapt, 'remove', this.remove);
 			this.render();
+
+			this.model.state._locked = false;
+            if (this.model.config._lock) {
+                var contentObjects = this.model.config._lock;
+                var completeCount = 0;
+                for( var i = 0; i < contentObjects.length; i++) if (Adapt.contentObjects.findWhere({_id:contentObjects[i]}).get("_isComplete")) completeCount++;
+                if (completeCount < contentObjects.length) {
+                    this.model.state._locked = true;
+                }
+            }
+
+            if (this.model.state._locked == true) this.$('#next').attr("disabled", "disabled");
+
+			if (this.model.config._isEnableNextOnCompletion) {
+				if (this.model.state.currentPage.model.get("_isComplete")) this.onPageCompleted();
+				else {
+					this.$('#next').attr("disabled", "disabled");
+					this.listenTo( this.model.state.currentPage.model,"change:_isComplete", this.onPageCompleted );
+				}
+			}
+
+
+			
 		},
 		render: function() {
-	        var template = Handlebars.templates["quicknav"];
+	        var template = Handlebars.templates["quicknav-bar"];
 	        this.$el.html(template(this.model));
 	        return this;
 		},
@@ -40,6 +63,21 @@ define(function(require) {
 		},
 		onNextClicked: function() {
 			this.parent.onNextClicked();
+		},
+
+		onPageCompleted: function( ) {
+			this.model.state._locked = false;
+            if (this.model.config._lock) {
+                var contentObjects = this.model.config._lock;
+                var completeCount = 0;
+                for( var i = 0; i < contentObjects.length; i++) if (Adapt.contentObjects.findWhere({_id:contentObjects[i]}).get("_isComplete")) completeCount++;
+                if (completeCount < contentObjects.length) {
+                    this.model.state._locked = true;
+                }
+            }
+
+            if (this.model.state._locked == true) this.$('#next').attr("disabled", "disabled");
+			else this.$('#next').removeAttr("disabled");
 		}
 
 	});

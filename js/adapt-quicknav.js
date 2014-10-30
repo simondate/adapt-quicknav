@@ -9,6 +9,7 @@ define(function(require) {
 	var Adapt = require('coreJS/adapt');
 	var Backbone = require('backbone');
 	var QuickNavView = require('extensions/adapt-quicknav/js/adapt-quicknav-view');
+	require('extensions/adapt-quicknav/js/quicknav-placeholder');
 
 	var quicknav = Backbone.View.extend({
 		config: undefined,
@@ -34,13 +35,13 @@ define(function(require) {
 				pages = _.pluck(new Backbone.Collection(Adapt.contentObjects.where({_type: "page"})).toJSON(), [ "_id" ]);
 			} else {
 				menus = _.keys(this.menuStructure);
-				indexOfMenu = menus.indexOf(this.state.currentMenu.get("_id"));
+				indexOfMenu = _.indexOf(menus, this.state.currentMenu.get("_id"));
 				pages = _.keys(this.menuStructure[this.state.currentMenu.get("_id")]);
 			}
 
 			if (pages === undefined) return;
 
-			var indexOfPage = pages.indexOf(this.state.currentPage.model.get("_id"));
+			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
 			if (this.config._isContinuous == "global" && menus !== undefined) {
 				if (indexOfPage === 0) { //if page is at the beginning of the menu goto previous menu, last page
 					if (this.config._global !== undefined && this.config._global._pagePrevious !== undefined) {
@@ -86,13 +87,13 @@ define(function(require) {
 				pages = _.pluck(new Backbone.Collection(Adapt.contentObjects.where({_type: "page"})).toJSON(), [ "_id" ]);
 			} else {
 				menus = _.keys(this.menuStructure);
-				indexOfMenu = menus.indexOf(this.state.currentMenu.get("_id"));
+				indexOfMenu = _.indexOf(menus, this.state.currentMenu.get("_id"));
 				pages = _.keys(this.menuStructure[this.state.currentMenu.get("_id")]);
 			}
 
 			if (pages === undefined) return;
 
-			var indexOfPage = pages.indexOf(this.state.currentPage.model.get("_id"));
+			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
 			if (this.config._isContinuous == "global" && menus !== undefined) {
 				if (indexOfPage === pages.length - 1) { //if page is at the end of the menu goto next menu, first page
 					if (this.config._global !== undefined && this.config._global._pageNext !== undefined) {
@@ -139,7 +140,7 @@ define(function(require) {
 
 			if (pages === undefined) return;
 
-			var indexOfPage = pages.indexOf(this.state.currentPage.model.get("_id"));
+			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
 			
 			if (this.config._isContinuous == "local" || this.config._isContinuous == "global" ) {
 				if (indexOfPage === 0 && indexOfPage == pages.length - 1 && this.config._isContinuous == "local") {
@@ -197,11 +198,20 @@ define(function(require) {
 		quickNavView.parent = quicknav;
 		quickNavView.undelegateEvents();
 
-		var injectInto = element.find(quicknav.config._injectIntoSelector);
-		if (injectInto.length > 0) {
-			injectInto.append(quickNavView.$el);
+		if (quicknav.config._injectIntoSelector) {
+			var injectInto = element.find(quicknav.config._injectIntoSelector);
+			if (injectInto.length > 0) {
+				injectInto.append(quickNavView.$el);
+			} else {
+				element.append(quickNavView.$el);
+			}
 		} else {
-			element.append(quickNavView.$el);
+			var injectInto = element.find(".quicknav-component");
+			if (injectInto.length > 0) {
+				injectInto.append(quickNavView.$el);
+			} else {
+				element.append(quickNavView.$el);
+			}
 		}
 		
 		quickNavView.delegateEvents();
