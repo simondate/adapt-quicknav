@@ -9,6 +9,7 @@ define(function(require) {
 	var Adapt = require('coreJS/adapt');
 	var Backbone = require('backbone');
 	var QuickNavView = require('extensions/adapt-quicknav/js/adapt-quicknav-view');
+	require('extensions/adapt-quicknav/js/quicknav-placeholder');
 
 	var quicknav = Backbone.View.extend({
 		config: undefined,
@@ -197,11 +198,20 @@ define(function(require) {
 		quickNavView.parent = quicknav;
 		quickNavView.undelegateEvents();
 
-		var injectInto = element.find(quicknav.config._injectIntoSelector);
-		if (injectInto.length > 0) {
-			injectInto.append(quickNavView.$el);
+		if (quicknav.config._injectIntoSelector) {
+			var injectInto = element.find(quicknav.config._injectIntoSelector);
+			if (injectInto.length > 0) {
+				injectInto.append(quickNavView.$el);
+			} else {
+				element.append(quickNavView.$el);
+			}
 		} else {
-			element.append(quickNavView.$el);
+			var injectInto = element.find(".quicknav-component");
+			if (injectInto.length > 0) {
+				injectInto.append(quickNavView.$el);
+			} else {
+				element.append(quickNavView.$el);
+			}
 		}
 		
 		quickNavView.delegateEvents();
