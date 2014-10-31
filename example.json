@@ -31,7 +31,14 @@
             "_isHidden": false,
             "text": "Next >"
         }
-    }
+    },
+    "_isEnableNextOnCompletion": true,
+    "_lock": [
+        "co-05",
+        "co-10",
+        "co-15",
+        "co-20"
+    ]
 }
 
 //to go in components.json
