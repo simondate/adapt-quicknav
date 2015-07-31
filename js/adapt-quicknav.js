@@ -75,7 +75,8 @@ define(function(require) {
 			Backbone.history.navigate("#/id/" + pages[indexOfPage], {trigger: true, replace: true});
 		},
 		onUpClicked: function() {
-			Adapt.trigger("navigation:menuButton");
+			var parentId = this.state.currentPage.model.get("_parentId");
+			Backbone.history.navigate("#/id/" + parentId, {trigger: true, replace: true});
 		},
 		onNextClicked: function() {
 			var menus = undefined;
