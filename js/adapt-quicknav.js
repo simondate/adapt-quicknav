@@ -23,8 +23,6 @@ define(function(require) {
 		menuStructure: {},
 		onRootClicked: function() {
 			Backbone.history.navigate("#/",{trigger:true, "replace": true});
-			this.state.currentMenu = undefined;
-			this.state.currentPage = undefined;
 		},
 		onPreviousClicked:function() {
 			var menus = undefined;
