@@ -8,3 +8,5 @@ Quick navigation bar that is positioned at the top or bottom of a page. Can be c
 - next (navigates directly to the next page, if exists, without having to navigate via the menu)
 
 You can lock the next button until certain criteria are met by the user - see example.json for how to do this.
+
+Additionally, quicknav buttons can now be configured to use icons instead of text - see example.json for how to do this.
