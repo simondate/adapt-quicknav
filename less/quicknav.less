@@ -4,14 +4,12 @@
 	.button {
 		float: none;
 		margin-bottom: 5px;
-	}
-
-	.button-icon {
-		min-height: inherit;
-		padding: 20px;
-	}
-
-	.icon {
-		color: @submit-button-color-inverted;
+		
+		&.icon {
+			color: @submit-button-color-inverted;
+			display: inline-block;
+			min-height: inherit;
+			padding: 20px;
+		}
 	}
 }
