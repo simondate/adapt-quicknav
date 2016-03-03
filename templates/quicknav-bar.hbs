@@ -2,21 +2,13 @@
 
 	{{#if config._buttons._hasIcons}}	
 
-	<button id="previous" class="button button-icon{{#if config._buttons._previous._isHidden}} display-none{{/if}}{{#if state.isFirstPage}} disabled{{/if}}" {{#if state.isFirstPage}}disabled="disabled"{{/if}} role="button" aria-label="{{config._buttons._previous.text}}">
-		<div class="icon {{config._buttons._previous._icon}}"></div>
-	</button>
+	<button id="previous" class="button icon {{config._buttons._previous._icon}}{{#if config._buttons._previous._isHidden}} display-none{{/if}}{{#if state.isFirstPage}} disabled{{/if}}" {{#if state.isFirstPage}}disabled="disabled"{{/if}} role="button" aria-label="{{config._buttons._previous.text}}"></button>
 
-	<button id="root" class="button button-icon{{#if config._buttons._root._isHidden}} display-none{{/if}}" role="button" aria-label="{{config._buttons._root.text}}">
-		<div class="icon {{config._buttons._root._icon}}"></div>
-	</button>
+	<button id="root" class="button icon {{config._buttons._root._icon}}{{#if config._buttons._root._isHidden}} display-none{{/if}}" role="button" aria-label="{{config._buttons._root.text}}"></button>
 
-	<button id="up" class="button button-icon{{#if config._buttons._up._isHidden}} display-none{{/if}}" role="button" aria-label="{{config._buttons._up.text}}">
-		<div class="icon {{config._buttons._up._icon}}"></div>
-	</button>
+	<button id="up" class="button icon {{config._buttons._up._icon}}{{#if config._buttons._up._isHidden}} display-none{{/if}}" role="button" aria-label="{{config._buttons._up.text}}"></button>
 
-	<button id="next" class="button button-icon{{#if config._buttons._next._isHidden}} display-none{{/if}}{{#if state.isLastPage}} disabled{{/if}}" {{#if state.isLastPage}}disabled="disabled"{{/if}} role="button" aria-label="{{config._buttons._next.text}}">
-		<div class="icon {{config._buttons._next._icon}}"></div>
-	</button>
+	<button id="next" class="button icon {{config._buttons._next._icon}}{{#if config._buttons._next._isHidden}} display-none{{/if}}{{#if state.isLastPage}} disabled{{/if}}" {{#if state.isLastPage}}disabled="disabled"{{/if}} role="button" aria-label="{{config._buttons._next.text}}"></button>
 
 	{{else}}
 
