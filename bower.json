@@ -7,7 +7,7 @@
     "issues": "https://github.com/cgkineo/adapt-quicknav/issues/",
     "displayName": "Quick navigation",
     "extension": "quicknav",
-    "description": "Quick navigation bar that is positioned at the top or bottom of a page",
+    "description": "Navigation bar that is displayed within Adapt content pages, typically at the bottom.",
     "main": "/js/adapt-quicknav.js",
     "keywords": [
         "adapt-plugin",
