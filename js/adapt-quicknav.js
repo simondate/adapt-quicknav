@@ -74,7 +74,13 @@ define(function(require) {
 		},
 		onUpClicked: function() {
 			var parentId = this.state.currentPage.model.get("_parentId");
-			Backbone.history.navigate("#/id/" + parentId, {trigger: true, replace: true});
+			var parentModel =  Adapt.findById(parentId);
+			if(parentModel.get("_type") != 'course'){
+				Backbone.history.navigate("#/id/" + parentId, {trigger: true, replace: true});
+			}
+			else	{
+				this.onRootClicked();
+			}
 		},
 		onNextClicked: function() {
 			var menus = undefined;
