@@ -29,7 +29,7 @@ define(function(require) {
 			var indexOfMenu = undefined;
 			var pages = undefined;
 
-			if (_.keys(this.menuStructure).length === 0) {
+			if (_.keys(this.menuStructure).length === 0 || !this.state.currentMenu) {
 				pages = _.pluck(new Backbone.Collection(Adapt.contentObjects.where({_type: "page"})).toJSON(), [ "_id" ]);
 			} else {
 				menus = _.keys(this.menuStructure);
@@ -40,8 +40,8 @@ define(function(require) {
 			if (pages === undefined) return;
 
 			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
-			if (this.config._isContinuous == "global" && menus !== undefined) {
-				if (indexOfPage === 0) { //if page is at the beginning of the menu goto previous menu, last page
+			if (this.config._isContinuous == "global" && (menus !== undefined || !this.state.currentMenu)) {
+				if (indexOfPage === 0 || !this.state.currentMenu) { //if page is at the beginning of the menu goto previous menu, last page
 					if (this.config._global !== undefined && this.config._global._pagePrevious !== undefined) {
 						Backbone.history.navigate("#/id/" + this.config._global._pagePrevious, {trigger: true, replace: true});
 						return;
@@ -74,14 +74,20 @@ define(function(require) {
 		},
 		onUpClicked: function() {
 			var parentId = this.state.currentPage.model.get("_parentId");
-			Backbone.history.navigate("#/id/" + parentId, {trigger: true, replace: true});
+			var parentModel =  Adapt.findById(parentId);
+			if(parentModel.get("_type") != 'course'){
+				Backbone.history.navigate("#/id/" + parentId, {trigger: true, replace: true});
+			}
+			else	{
+				this.onRootClicked();
+			}
 		},
 		onNextClicked: function() {
 			var menus = undefined;
 			var indexOfMenu = undefined;
 			var pages = undefined;
 
-			if (_.keys(this.menuStructure).length === 0) {
+			if (_.keys(this.menuStructure).length === 0 || !this.state.currentMenu) {
 				pages = _.pluck(new Backbone.Collection(Adapt.contentObjects.where({_type: "page"})).toJSON(), [ "_id" ]);
 			} else {
 				menus = _.keys(this.menuStructure);
@@ -92,8 +98,8 @@ define(function(require) {
 			if (pages === undefined) return;
 
 			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
-			if (this.config._isContinuous == "global" && menus !== undefined) {
-				if (indexOfPage === pages.length - 1) { //if page is at the end of the menu goto next menu, first page
+			if (this.config._isContinuous == "global" && (menus !== undefined || !this.state.currentMenu)) {
+				if (indexOfPage === pages.length - 1 || !this.state.currentMenu) { //if page is at the end of the menu goto next menu, first page
 					if (this.config._global !== undefined && this.config._global._pageNext !== undefined) {
 						Backbone.history.navigate("#/id/" + this.config._global._pageNext, {trigger: true, replace: true});
 						return;
@@ -130,7 +136,7 @@ define(function(require) {
 
 			var pages = undefined;
 
-			if (_.keys(this.menuStructure).length === 0) {
+			if (_.keys(this.menuStructure).length === 0 || !this.state.currentMenu) {
 				pages = _.pluck(new Backbone.Collection(Adapt.contentObjects.where({_type: "page"})).toJSON(), [ "_id" ]);
 			} else {
 				pages = _.keys(this.menuStructure[this.state.currentMenu.get("_id")]);
@@ -213,9 +219,7 @@ define(function(require) {
 		}
 		
 		quickNavView.delegateEvents();
-
-
-
+		
 	});
 
 	return quicknav;
