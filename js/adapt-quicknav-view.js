@@ -6,7 +6,7 @@
 
 define([
 	'core/js/adapt'
-],function(Adapt) {
+], function(Adapt) {
 
 	var QuickNavView = Backbone.View.extend({
 		initialize: function() {

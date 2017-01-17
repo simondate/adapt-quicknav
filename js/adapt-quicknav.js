@@ -6,10 +6,9 @@
 
 define([
 	'core/js/adapt',
-	'extensions/adapt-quicknav/js/adapt-quicknav-view',
-	'extensions/adapt-quicknav/js/quicknav-placeholder'
-],
-function(Adapt, QuickNavView) {
+	'./adapt-quicknav-view',
+	'./quicknav-placeholder'
+], function(Adapt, QuickNavView) {
 
 	var quicknav = Backbone.View.extend({
 		config: undefined,
