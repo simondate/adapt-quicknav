@@ -4,10 +4,9 @@
 * Maintainers - Oliver Foster <oliver.foster@kineo.com>
 */
 
-define(function(require) {
-
-	var Backbone = require('backbone');
-	var Adapt = require('coreJS/adapt');
+define([
+	'core/js/adapt'
+],function(Adapt) {
 
 	var QuickNavView = Backbone.View.extend({
 		initialize: function() {
@@ -24,7 +23,7 @@ define(function(require) {
                 }
             }
 
-            if (this.model.state._locked == true) this.$('#next').attr("disabled", "disabled");
+            if (this.model.state._locked === true) this.$('#next').attr("disabled", "disabled");
 
 			if (this.model.config._isEnableNextOnCompletion) {
 				if (this.model.state.currentPage.model.get("_isComplete")) this.onPageCompleted();
@@ -32,10 +31,7 @@ define(function(require) {
 					this.$('#next').attr("disabled", "disabled");
 					this.listenTo( this.model.state.currentPage.model,"change:_isComplete", this.onPageCompleted );
 				}
-			}
-
-
-			
+			}			
 		},
 		render: function() {
 	        var template = Handlebars.templates["quicknav-bar"];
@@ -76,12 +72,11 @@ define(function(require) {
                 }
             }
 
-            if (this.model.state._locked == true) this.$('#next').attr("disabled", "disabled");
+            if (this.model.state._locked === true) this.$('#next').attr("disabled", "disabled");
 			else this.$('#next').removeAttr("disabled");
 		}
 
 	});
 
 	return QuickNavView;
-})
-	
+});

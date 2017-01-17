@@ -1,12 +1,7 @@
-/*
-* adapt-diffuseAssessment
-* License - http://github.com/adaptlearning/adapt_framework/LICENSE
-* Maintainers - Oliver Foster <oliver.foster@kineo.com>
-*/
-
-define(function(require) {
-    var ComponentView = require('coreViews/componentView');
-    var Adapt = require('coreJS/adapt');
+define([
+    'core/js/adapt',
+    'core/js/views/componentView'
+], function(Adapt, ComponentView) {
 
     var quicknav = ComponentView.extend({
         preRender: function() {
