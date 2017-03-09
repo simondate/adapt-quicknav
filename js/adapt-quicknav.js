@@ -65,7 +65,7 @@ define([
 				params.pages = _.pluck(new Backbone.Collection(Adapt.contentObjects.where({_type: "page"})).toJSON(), [ "_id" ]);
 			} else {
 				params.menus = _.keys(this.menuStructure);
-				params.indexOfMenu = _.indexOf(menus, this.state.currentMenu.get("_id"));
+				params.indexOfMenu = _.indexOf(params.menus, this.state.currentMenu.get("_id"));
 				params.pages = _.keys(this.menuStructure[this.state.currentMenu.get("_id")]);
 			}
 
