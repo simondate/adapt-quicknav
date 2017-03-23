@@ -1,9 +1,3 @@
-/*
-* adapt-quicknav
-* License - http://github.com/adaptlearning/adapt_framework/LICENSE
-* Maintainers - Oliver Foster <oliver.foster@kineo.com>
-*/
-
 define([
 	'core/js/adapt',
 	'./adapt-quicknav-view',
@@ -55,7 +49,10 @@ define([
 
 		navigateTo: function(id) {
 			var hash = "#" + (id === "/" ? id : "/id/" + id);
-			Backbone.history.navigate(hash, {trigger:true, "replace": true});
+			Backbone.history.navigate(hash, {
+				trigger: true, 
+				replace: false
+			});
 		},
 
 		getParameters: function() {
