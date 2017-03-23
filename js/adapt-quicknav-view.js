@@ -37,34 +37,34 @@ define([
 		},
 
 		render: function() {
-	        var template = Handlebars.templates["quicknav-bar"];
-	        this.$el.html(template(this.model));
-	        return this;
+			var template = Handlebars.templates["quicknav-bar"];
+			this.$el.html(template(this.model));
+			return this;
 		},
 
 		setLocking: function() {
-	        this.model.state._locked = false;
-            
-            if (this.model.config._lock) {
-                var contentObjects = this.model.config._lock;
-                var completeCount = 0;
+			this.model.state._locked = false;
 
-                for (var i = 0; i < contentObjects.length; i++) {
-      				var contentObject = Adapt.contentObjects.findWhere({_id:contentObjects[i]});
+			if (this.model.config._lock) {
+				var contentObjects = this.model.config._lock;
+				var completeCount = 0;
 
-                	if (contentObject.get("_isComplete") || !contentObject.get("_isAvailable")) completeCount++;
-                }
+				for (var i = 0; i < contentObjects.length; i++) {
+					var contentObject = Adapt.contentObjects.findWhere({_id:contentObjects[i]});
 
-                if (completeCount < contentObjects.length) {
-                    this.model.state._locked = true;
-                }
-            }
+					if (contentObject.get("_isComplete") || !contentObject.get("_isAvailable")) completeCount++;
+				}
 
-            if (this.model.state._locked === true) {
-            	this.$('#next').attr("disabled", "disabled");
-            } else {
-            	this.$('#next').removeAttr("disabled");
-            }
+				if (completeCount < contentObjects.length) {
+					this.model.state._locked = true;
+				}
+			}
+
+			if (this.model.state._locked === true) {
+				this.$('#next').attr("disabled", "disabled");
+			} else {
+				this.$('#next').removeAttr("disabled");
+			}
 		},
 
 		onRootClicked: function() {
