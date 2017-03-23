@@ -50,7 +50,7 @@ define([
 		navigateTo: function(id) {
 			var hash = "#" + (id === "/" ? id : "/id/" + id);
 			Backbone.history.navigate(hash, {
-				trigger:true, 
+				trigger: true, 
 				replace: false
 			});
 		},
