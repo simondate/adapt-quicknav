@@ -210,7 +210,7 @@ define([
 		var blocks = pageModel.findDescendants("blocks");
 
 		var parentId = pageModel.get("_parentId");
-		quicknav.state.currentMenu = Adapt.contentObjects.findWhere({_id: parentId});
+		quicknav.state.currentMenu = Adapt.findById(parentId);
 		quicknav.state.currentPage = pageView;
 		quicknav.state.lastBlock = blocks.last();
 		quicknav.config = config;
