@@ -51,7 +51,7 @@
                     "type": "Select",
                     "options": ["global", "local", "false"]
                   },
-                  "default": "global",
+                  "default": "false",
                   "help": "global (loop through menus+pages) / local (loop through pages ) / false (disable next+prev buttons at start and end)",
                   "validators": []
                 },
