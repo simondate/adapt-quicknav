@@ -3,7 +3,8 @@ define([
     'core/js/views/componentView'
 ], function(Adapt, ComponentView) {
 
-    var quicknav = ComponentView.extend({
+    var QuickNavComponent = ComponentView.extend({
+
         preRender: function() {
             this.setCompletionStatus();
         },
@@ -11,9 +12,10 @@ define([
         postRender: function() {
             this.setReadyStatus();
         }
+
     });
 
-    Adapt.register("quicknav", quicknav);
+    Adapt.register("quicknav", QuickNavComponent);
 
-    return quicknav;
+    return QuickNavComponent;
 });
