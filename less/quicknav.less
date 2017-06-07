@@ -11,5 +11,16 @@
             min-height: inherit;
             padding: 20px;
         }
+
+        &.selected {
+            background-color: @button-color-hover;
+            color: @button-text-color-hover;
+            border-color: @button-border-color-hover;
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+        }
+        
     }
 }
