@@ -1,17 +1,7 @@
 <div class="quicknav-inner">
 
-    <button id="previous" class="button {{#if config._buttons._previous._icon}}icon {{config._buttons._previous._icon}}{{/if}}{{#if config._buttons._previous._isHidden}} display-none{{/if}}{{#if state.isFirstPage}} disabled{{/if}}" aria-label="{{config._buttons._previous.text}}" {{#if config._buttons._previous._showToolTip}}quicktip="{{#if previous.displayTitle}}{{previous.displayTitle}}{{else}}{{previous.title}}{{/if}}"{{/if}}>{{config._buttons._previous.text}}</button>
-
-    <button id="root" class="button {{#if config._root._previous._icon}}icon {{config._root._previous._icon}}{{/if}}{{#if config._root._root._isHidden}} display-none{{/if}}" aria-label="{{config._buttons._root.text}}" {{#if config._buttons._root._showToolTip}}quicktip="{{#if root.displayTitle}}{{root.displayTitle}}{{else}}{{root.title}}{{/if}}"{{/if}}>{{config._buttons._root.text}}</button>
-
-    <button id="up" class="button {{#if config._buttons._up._icon}}icon {{config._buttons._up._icon}}{{/if}}{{#if config._buttons._up._isHidden}} display-none{{/if}}" aria-label="{{config._buttons._up.text}}" {{#if config._buttons._up._showToolTip}}quicktip="{{#if up.displayTitle}}{{up.displayTitle}}{{else}}{{up.title}}{{/if}}"{{/if}}>{{config._buttons._up.text}}</button>
-
-    <button id="next" class="button {{#if config._buttons._next._icon}}icon {{config._buttons._next._icon}}{{/if}}{{#if config._buttons._next._isHidden}} display-none{{/if}}{{#if state.isLastPage}} disabled{{/if}}" aria-label="{{config._buttons._next.text}}" {{#if config._buttons._next._showToolTip}}quicktip="{{#if next.displayTitle}}{{next.displayTitle}}{{else}}{{next.title}}{{/if}}"{{/if}}>{{config._buttons._next.text}}</button>
-
-    {{#unless config._buttons._siblings._isHidden}}
-    {{#each siblings}}
-    <button id="{{_id}}" class="button {{#if config._buttons._siblings._classes}} {{config._buttons._siblings._classes}}{{/if}}{{#if @root/config._buttons._siblings._icon}}icon {{@root/config._buttons._siblings._icon}}{{/if}} sibling{{#if _isComplete}} complete{{/if}}{{#if _isLocked}} disabled locked{{/if}}{{#equals _id @root/state.currentPageId}} selected{{/equals}}" role="button" aria-label="{{#if displayTitle}}{{displayTitle}}{{else}}{{title}}{{/if}}" {{#if @root/config._buttons._siblings._showToolTip}}quicktip="{{#if displayTitle}}{{displayTitle}}{{else}}{{title}}{{/if}}"{{/if}}>{{inc @index}}</button>
+    {{#each _items}}
+    {{> quicknav-item this}}
     {{/each}}
-    {{/unless}}
 
 </div>

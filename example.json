@@ -1,83 +1,64 @@
-// To go in the contentObject.json file for each page
-
-"_quicknav": {
-    "_isEnabled": true,
-    "_isContinuous": "global",  //global (loop through menus+pages) / local (loop through pages ) / false (disable next+prev buttons at start and end)
-    "_injectIntoSelector": "", //force append to selector instead of page
-    "_global": { //change the flow for global continuous
-        "_pageNext":"co-10", // remove if to follow normal flow
-        "_pagePrevious": "co-10" // remove if to follow normal flow
-    }, 
-    "_buttons": {
-        "_root": {
-            "_isHidden": false,
-            "text": "Go to main menu"
-        },
-        "_up": {
-            "_isHidden": false,
-            "text": "Back to menu"
-        },
-        "_previous": {
-            "_isHidden": false,
-            "text": "< Previous"
-        },
-        "_next": {
-            "_isHidden": false,
-            "text": "Next >"
+// To go in the component.json file for each page
+    {
+        "_id": "c-04",
+        "_parentId": "b-04",
+        "_type": "component",
+        "_component": "quicknav",
+        "_classes": "",
+        "_layout": "left",
+        "title": "Introduction",
+        "displayTitle": "",
+        "body": "Adapt allows you to combine text and graphic components on the scrolling page to create rich and varied learning experiences. In addition, a wide range of interactive components are also available to help encourage deeper engagement with the material.<br><br>These presentation components can be structured in any way to help you create learning experiences that meet the needs of your learners.",
+        "instruction": "Scroll down to see what presentation components are available as part of the Version 2.0 core bundle.",
+        "_quicknav": {
+            "_comment": "global = loop through menus+pages, local = loop through pages, false = disable next+prev buttons at start and end",
+            "_isContinuous": "false",
+            "_buttons": {
+                "_previous": {
+                    "_order": 1,
+                    "_isHidden": false,
+                    "_icon": "",
+                    "text": "< Previous",
+                    "toolTip": "{{displayTitle}}",
+                    "_showToolTip": true,
+                    "_id": ""
+                },
+                "_root": {
+                    "_order": 2,
+                    "_isHidden": false,
+                    "_icon": "",
+                    "text": "Go to main menu",
+                    "toolTip": "{{displayTitle}}",
+                    "_showToolTip": true,
+                    "_id": ""
+                },
+                "_up": {
+                    "_order": 3,
+                    "_isHidden": false,
+                    "_icon": "",
+                    "text": "Back to menu",
+                    "toolTip": "{{displayTitle}}",
+                    "_showToolTip": true,
+                    "_id": ""
+                },
+                "_next": {
+                    "_order": 4,
+                    "_isHidden": false,
+                    "_icon": "",
+                    "text": "Next >",
+                    "toolTip": "{{displayTitle}}",
+                    "_showToolTip": true,
+                    "_id": ""
+                },
+                "_sibling": {
+                    "_order": 5,
+                    "_isHidden": false,
+                    "_icon": "",
+                    "text": "{{inc index}}",
+                    "toolTip": "{{displayTitle}}",
+                    "_showToolTip": true,
+                    "_id": ""
+                }
+            }
         }
     },
-    "_isEnableNextOnCompletion": true,
-    "_lock": [
-        "co-05",
-        "co-10",
-        "co-15",
-        "co-20"
-    ]
-}
-
-// Alternative theme using icons
-"_quicknav": {
-    "_isEnabled": true,
-    "_isContinuous": "global",
-    "_injectIntoSelector": "",
-    "_global": {
-        "_pageNext":"co-10",
-        "_pagePrevious": "co-10"
-    },
-    "_buttons": {
-        "_hasIcons": true, // Add option and set to true to enable Quicknav icons
-        "_root": {
-            "_isHidden": false,
-            "text": "Menu",
-            "_icon": "icon-home" // Define using _icon for each button. Icon pulls from vanilla font set
-        },
-        "_up": {
-            "_isHidden": true,
-            "text": "Back to menu",
-            "_icon": "icon-home"
-        },
-        "_previous": {
-            "_isHidden": true,
-            "text": "Previous",
-            "_icon": "icon-controls-left"
-        },
-        "_next": {
-            "_isHidden": false,
-            "text": "Next",
-            "_icon": "icon-controls-right"
-        }
-    }
-}
-
-//to go in components.json
-//if you want a component in which to place the quicknav, please add:
-//NOTE: please remove _injectIntoSelector from above
-{
-    "_id": "c-61",
-    "_parentId": "b-48",
-    "_type": "component",
-    "_component": "quicknav",
-    "_classes": "",
-    "_layout": "full",
-    "title": "c-48"
-},

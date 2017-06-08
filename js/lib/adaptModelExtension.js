@@ -1,6 +1,6 @@
 define([
-    'coreJS/adapt',
-    'coreModels/adaptModel'
+    'core/js/adapt',
+    'core/js/models/adaptModel'
 ], function(Adapt, AdaptModel) {
 
     _.extend(AdaptModel.prototype, {
@@ -19,7 +19,8 @@ define([
         *
         * This is useful when sequential operations are performed on the page/article/block/component hierarchy.
         */
-        getAllDescendants: function(parentFirst) {
+        getAllDescendantsQuickNav: function(parentFirst) {
+
             var descendants = [];
 
             if (this.get("_type") === "component") {
@@ -48,6 +49,7 @@ define([
             }
 
             return descendants;
+
         }
 
     });

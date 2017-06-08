@@ -3,9 +3,10 @@ define([
     'core/js/models/componentModel'
 ], function(Adapt, ComponentModel) {
 
-    var QuickNavModel = ComponentModel.extend({
+    var Model = ComponentModel.extend({
 
         defaults: function() {
+
             return $.extend({}, _.result(ComponentModel.prototype, "defaults"), {
                 "_isOptional": true,
                 "_isComplete": true,
@@ -14,103 +15,144 @@ define([
                     "_isEnabled": false
                 }
             });
+
         },
 
-        getConfig: function() {
-            return this.get("_quicknav");
-        },
+        getNavigationData: function() {
 
-        getDirectSiblings: function() {
+        /* 
+            * Combine the config, model, order, index and type for each _buttons
+            * Add each combined item to an array
+        */
 
-            var result = new Backbone.Collection();
+            var buttonTypeModels = {
+                "_page": this.getCurrentPage(),
+                "_up": this.getCurrentMenu(),
+                "_root": Adapt.course,
+                "_next": this.getNextPage(),
+                "_previous": this.getPrevPage(),
+                "_sibling": this.getSiblingPages()
+            };
 
-            var currentMenuPages = Adapt.quicknav.state.menuPages[Adapt.quicknav.state.currentMenu.get("_id")];
+            var data = [];
 
-            for (var k in currentMenuPages) {
-                var model = Adapt.findById(k);
-                if (!model.get("_isAvailable")) continue;
-                result.add(Adapt.findById(k));
+            var buttons = this.get("_quicknav")._buttons;
+            var order = 0;
+            var item;
+
+            for (var attrName in buttons) {
+
+                var buttonConfig = buttons[attrName];
+                var buttonModel = buttonTypeModels[attrName];
+
+                if (attrName === "_sibling") {
+                    // Generate sibling entries
+                    _.each(buttonModel, function(model, index) {
+
+                        item = model.toJSON();
+
+                        _.defaults(item, buttonConfig, { 
+                            type: attrName, 
+                            index: index, 
+                            order: order++
+                        });
+
+                        data.push(item);
+
+                    });
+
+                    continue;
+
+                }
+
+                // Find buttonModel from config._id if not found in defined type
+                buttonModel = buttonModel || Adapt.findById(buttonConfig._id);
+
+                // Convert found buttonModel to json if exists or create an "undefined" json
+                item = buttonModel ? buttonModel.toJSON() : { "_isUndefined": true };
+
+                _.defaults(item, buttonConfig, { 
+                    type: attrName, 
+                    index: 0, 
+                    order: order++
+                });
+
+                data.push(item);
+
             }
 
-            return result;
+            data.sort(function(a, b) {
+                return a._order - b._order;
+            });
 
-        },
-
-        getNavigationIds: function() {
-
-            return {
-                next: this.getNextPageId(),
-                previous: this.getPrevPageId(),
-                up: this.getCurrentMenu.get("_parentId"),
-                root: Adapt.course.get("_id")
-            };
+            return data;
 
         },
 
         getCurrentPage: function() {
-            
+
             var parents = this.getParents();
-            for (var i = parents.models.length-1; i > -1; i--) {
+            for (var i = 0, l = parents.models.length; i < l; i++) {
+
                 var model = parents.models[i];
                 switch (model.get("_type")) {
                     case "page":
                         return model;
                 }
+
             }
 
         },
 
         getCurrentMenu: function() {
-            
+
             var parents = this.getParents();
-            for (var i = parents.models.length-1; i > -1; i--) {
+            for (var i = 0, l = parents.models.length; i < l; i++) {
+
                 var model = parents.models[i];
                 switch (model.get("_type")) {
                     case "menu": case "course":
                         return model;
                 }
+
             }
+
+        },
+
+        getSiblingPages: function() {
             
+            var currentMenu = this.getCurrentMenu();
+            var siblingModels = currentMenu.getAllDescendantsQuickNav(true);
+
+            siblingModels = _.filter(siblingModels, function(model) {
+                return (model.get("_type") === "page" && model.get("_isAvailable"));
+            });
+
+            return siblingModels;
+
         },
 
-        getPrevPageID: function() {
-
-            var config = this.getConfig();
+        getPrevPage: function() {
 
             var currentPage = this.getCurrentPage();
             var currentPageId = currentPage.get("_id");
-            var currentMenu = this.getCurrentMenu();
 
-            var loop = false;
-            var descendants;
-            switch (config._isContinuous) {
-                case "global":
-                    loop = true;
-                    descendants = Adapt.course.getAllDescendants(true);
-                    break;
-                case "local":
-                    loop = true;
-                default:
-                    descendants = currentMenu.getAllDescendants(true);
-            }
+            var pages = this.getPages();
 
-            if (loop) {
-                descendants = descendants.concat(descendants);
-            }
+            var hasFoundCurrentPage = false;
+            for (var i = pages.length-1; i > -1; i--) {
 
-            var pageIndex = -1, found = false;
-            for (var i = descendants.length-1; i > -1; i--) {
+                var page = pages[i];
+                var isNotAvailable = !page.get("_isAvailable");
+                if (isNotAvailable) continue;
 
-                var descendant = descendants[i];
-                if (!descendant.get("_isAvailable")) continue;
-
-                if (!found && descendant.get("_id") === currentPageId) {
-                    found = true
+                if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
+                    hasFoundCurrentPage = true
                     continue;
                 } 
 
-                if (found && descendant.get("_type") === "page") {
-                    return descendant;
+                if (hasFoundCurrentPage) {
+                    return page;
                 }
 
             }
@@ -119,54 +161,66 @@ define([
 
         },
 
-        getNextPageID: function() {
-
-            var config = this.getConfig();
+        getNextPage: function() {
 
             var currentPage = this.getCurrentPage();
             var currentPageId = currentPage.get("_id");
-            var currentMenu = this.getCurrentMenu();
+
+            var pages = this.getPages();
+
+            var hasFoundCurrentPage = false;
+            for (var i = 0, l = pages.length; i < l; i++) {
+
+                var page = pages[i];
+                var isNotAvailable = !page.get("_isAvailable");
+                if (isNotAvailable) continue;
+
+                if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
+                    hasFoundCurrentPage = true
+                    continue;
+                } 
+
+                if (hasFoundCurrentPage) {
+                    return page;
+                }
+
+            }
+
+            return;
+
+        },
+
+        getPages: function() {
+
+            var config = this.get("_quicknav");
 
             var loop = false;
             var descendants;
             switch (config._isContinuous) {
                 case "global":
                     loop = true;
-                    descendants = Adapt.course.getAllDescendants(true);
+                    descendants = Adapt.course.getAllDescendantsQuickNav(true);
                     break;
                 case "local":
                     loop = true;
                 default:
-                    descendants = currentMenu.getAllDescendants(true);
+                    var currentMenu = this.getCurrentMenu();
+                    descendants = currentMenu.getAllDescendantsQuickNav(true);
             }
 
             if (loop) {
+                // Create a double copy to allow loop searching
                 descendants = descendants.concat(descendants);
             }
 
-            var pageIndex = -1, found = false;
-            for (var i = 0, l = descendants.length; i < l; i++) {
-
-                var descendant = descendants[i];
-                if (!descendant.get("_isAvailable")) continue;
-
-                if (!found && descendant.get("_id") === currentPageId) {
-                    found = true
-                    continue;
-                } 
-
-                if (found && descendant.get("_type") === "page") {
-                    return descendant;
-                }
-
-            }
-
-            return;
+            return _.filter(descendants, function(model) {
+                return model.get("_type") === "page";
+            });
 
         }
 
     });
 
-    return QuickNavModel;
+    return Model;
 
 });

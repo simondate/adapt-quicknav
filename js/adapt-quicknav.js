@@ -2,7 +2,6 @@ define([
     'core/js/adapt',
     './model',
     './view',
-    './controller',
     './lib/adaptModelExtension'
 ], function(Adapt, Model, View) {
     

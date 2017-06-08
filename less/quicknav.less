@@ -1,7 +1,7 @@
 .quicknav {
     text-align: center;
 
-    .button {
+    button {
         float: none;
         margin-bottom: 5px;
         
@@ -20,6 +20,15 @@
 
         &.disabled {
             cursor: not-allowed;
+        }
+
+        &.undefined {
+            display: none;
+        }
+
+        .text {
+            font-family: @font-family;
+            .button-text;
         }
         
     }
