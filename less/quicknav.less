@@ -1,21 +1,25 @@
 .quicknav {
-    text-align: center;
+    .quicknav-widget {
+        font-size: 0;
+        text-align: center;
+    }
 
     button {
-        float: none;
-        margin-bottom: 5px;
+        line-height: inherit;
+        margin: 2.5px;
+        min-height: inherit;
+        padding: 20px;
+        vertical-align: top;
         
         &.icon {
             color: @button-text-color;
             display: inline-block;
-            min-height: inherit;
-            padding: 20px;
         }
 
         &.selected {
             background-color: @button-color-hover;
-            color: @button-text-color-hover;
             border-color: @button-border-color-hover;
+            color: @button-text-color-hover;
         }
 
         &.disabled {
@@ -23,9 +27,17 @@
         }
 
         .text {
-            font-family: @font-family;
             .button-text;
+            display: inline-block;
+            font-family: @font-family;
+            min-width: 24px;
+            vertical-align: text-bottom;
+
+            @media all and (max-width: @device-width-small) {
+                line-height: 24px;
+                min-height: 24px;
+            }
         }
-        
     }
 }
+

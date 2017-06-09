@@ -97,7 +97,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "toolTip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -177,7 +177,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "toolTip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -257,7 +257,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "toolTip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -337,7 +337,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "toolTip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -417,7 +417,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "toolTip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
