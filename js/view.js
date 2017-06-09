@@ -16,7 +16,7 @@ define([
 
         preRender: function() {
 
-            _.bindAll(this, "postRender", "checkLocking");
+            _.bindAll(this, "postRender", "checkButtonStates");
 
             this.setCompletionStatus();
 
@@ -40,26 +40,26 @@ define([
 
         postRender: function() {
 
-            this.checkLocking();
+            this.checkButtonStates();
             this.setReadyStatus();
             
         },
 
         onPageCompleted: function() {
 
-            _.defer(this.checkLocking);
+            _.defer(this.checkButtonStates);
 
         },
 
-        checkLocking: function() {
+        checkButtonStates: function() {
 
             this.$("button").each(_.bind(function(index, item) {
-                this.checkButtonLock(item);
+                this.checkButtonState(item);
             }, this));
 
         },
 
-        checkButtonLock(button) {
+        checkButtonState(button) {
 
             var $button = $(button);
             var id = $button.attr("data-id");
@@ -71,6 +71,10 @@ define([
 
             if (model.get("_isComplete")) {
                 $button.addClass("complete");
+            }
+
+            if (id === this.model.getCurrentPage().get("_id")) {
+                $button.addClass("selected");
             }
 
             if (model.get("_isLocked")) {
