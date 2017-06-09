@@ -6,58 +6,70 @@
         "_component": "quicknav",
         "_classes": "",
         "_layout": "left",
-        "title": "Introduction",
+        "title": "",
         "displayTitle": "",
-        "body": "Adapt allows you to combine text and graphic components on the scrolling page to create rich and varied learning experiences. In addition, a wide range of interactive components are also available to help encourage deeper engagement with the material.<br><br>These presentation components can be structured in any way to help you create learning experiences that meet the needs of your learners.",
-        "instruction": "Scroll down to see what presentation components are available as part of the Version 2.0 core bundle.",
+        "body": "",
+        "instruction": "",
         "_quicknav": {
-            "_comment": "global = loop through menus+pages, local = loop through pages, false = disable next+prev buttons at start and end",
-            "_isContinuous": "false",
+            "_comment": "allPages = loop sequentially through all pages in course",
+            "_comment": "siblings = loop sequentially through all pages in current parent object",
+            "_comment": "none = disable previous and next buttons at start and end of the pages in the current parent object",
+            "_loopType": "false",
             "_buttons": {
                 "_previous": {
+                    "_isEnabled": true,
                     "_order": 1,
-                    "_isHidden": false,
+                    "_classes": "",
                     "_icon": "",
                     "text": "< Previous",
-                    "toolTip": "{{displayTitle}}",
+                    "ariaLabel": "Previous Page",
                     "_showToolTip": true,
-                    "_id": ""
+                    "toolTip": "{{displayTitle}}",
+                    "_customRouteId": ""
                 },
                 "_root": {
-                    "_order": 2,
-                    "_isHidden": false,
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
                     "_icon": "",
                     "text": "Go to main menu",
-                    "toolTip": "{{displayTitle}}",
+                    "ariaLabel": "Got to Main menu",
                     "_showToolTip": true,
-                    "_id": ""
+                    "toolTip": "{{displayTitle}}",
+                    "_customRouteId": ""
                 },
                 "_up": {
-                    "_order": 3,
-                    "_isHidden": false,
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
                     "_icon": "",
                     "text": "Back to menu",
-                    "toolTip": "{{displayTitle}}",
+                    "ariaLabel": "Back to menu",
                     "_showToolTip": true,
-                    "_id": ""
+                    "toolTip": "{{displayTitle}}",
+                    "_customRouteId": "co-10"
                 },
                 "_next": {
-                    "_order": 4,
-                    "_isHidden": false,
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
                     "_icon": "",
                     "text": "Next >",
-                    "toolTip": "{{displayTitle}}",
+                    "ariaLabel": "Next Page",
                     "_showToolTip": true,
-                    "_id": ""
+                    "toolTip": "{{displayTitle}}",
+                    "_customRouteId": ""
                 },
                 "_sibling": {
-                    "_order": 5,
-                    "_isHidden": false,
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
                     "_icon": "",
                     "text": "{{inc index}}",
-                    "toolTip": "{{displayTitle}}",
+                    "ariaLabel": "Page {{inc index}}",
                     "_showToolTip": true,
-                    "_id": ""
+                    "toolTip": "{{displayTitle}}",
+                    "_customRouteId": ""
                 }
             }
         }

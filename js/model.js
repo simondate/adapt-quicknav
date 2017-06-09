@@ -50,13 +50,11 @@ define([
                     _.each(buttonModel, function(model, index) {
 
                         item = model.toJSON();
-
-                        _.defaults(item, buttonConfig, { 
+                        _.extend(item, buttonConfig, { 
                             type: attrName, 
                             index: index, 
                             order: order++
                         });
-
                         data.push(item);
 
                     });
@@ -65,18 +63,18 @@ define([
 
                 }
 
-                // Find buttonModel from config._id if not found in defined type
-                buttonModel = buttonModel || Adapt.findById(buttonConfig._id);
+                // Find buttonModel from config._customRouteId if not found in defined type
+                if (buttonConfig._customRouteId) buttonModel = Adapt.findById(buttonConfig._customRouteId);
+                buttonModel = buttonModel || Adapt.findById(buttonConfig._customRouteId);
 
                 // Convert found buttonModel to json if exists or create an "undefined" json
-                item = buttonModel ? buttonModel.toJSON() : { "_isUndefined": true };
+                item = buttonModel ? buttonModel.toJSON() : { "_isHidden": true };
 
-                _.defaults(item, buttonConfig, { 
+                _.extend(item, buttonConfig, { 
                     type: attrName, 
                     index: 0, 
                     order: order++
                 });
-
                 data.push(item);
 
             }

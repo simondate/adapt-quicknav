@@ -1,12 +1,13 @@
-{{#unless _isHidden}}
+{{#if _isEnabled}}
 <button 
     data-type="{{type}}" 
     data-id="{{_id}}" 
-    class="{{#if _icon}}icon {{_icon}}{{/if}}{{#if _isUndefined}}undefined disabled {{/if}}{{#if _isLocked}}locked disabled{{/if}}" 
-    aria-label="{{{compile ariaLabel this}}}" 
+    class="{{#if _icon}}icon {{_icon}} {{/if}}{{#if _isHidden}}hidden disabled {{/if}}{{#if _isLocked}}locked disabled {{/if}}{{#if _classes}}{{_classes}}{{/if}}" 
+    {{#if _isHidden}}disabled="disabled" {{/if}}
+    aria-label="{{#if _isLocked}}{{@root/_globals._accessibility._ariaLabels.locked}}{{else if _isComplete}}{{@root/_globals._accessibility._ariaLabels.complete}}{{else}}{{@root/_globals._accessibility._ariaLabels.incomplete}}{{/if}} {{{compile ariaLabel this}}}" 
     tooltip="{{#if _showToolTip}}{{{compile toolTip this}}}{{/if}}">
 	<span class="text">
 	{{{compile text this}}}
 	</span>
 </button>
-{{/unless}}
+{{/if}}
