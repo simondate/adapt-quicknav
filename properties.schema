@@ -74,6 +74,14 @@
               "inputType": "Text",
               "validators": []
             },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
             "text": {
               "type": "string",
               "required": true,
@@ -152,6 +160,14 @@
               "title": "Icon class",
               "default": "",
               "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
               "validators": []
             },
             "text": {
@@ -234,6 +250,14 @@
               "inputType": "Text",
               "validators": []
             },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
             "text": {
               "type": "string",
               "required": true,
@@ -314,6 +338,14 @@
               "inputType": "Text",
               "validators": []
             },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
             "text": {
               "type": "string",
               "required": true,
@@ -392,6 +424,14 @@
               "title": "Icon class",
               "default": "",
               "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
               "validators": []
             },
             "text": {
