@@ -2,10 +2,10 @@
 <button 
     data-type="{{type}}" 
     data-id="{{_id}}" 
-    class="{{#if _icon}}icon {{_icon}} {{/if}}{{#if _isHidden}}hidden disabled {{/if}}{{#if _isLocked}}locked disabled {{/if}}{{#if _classes}}{{_classes}}{{/if}}" 
+    class="{{#if _iconClass}}icon {{_iconClass}} {{/if}}{{#if _isHidden}}hidden disabled {{/if}}{{#if _isLocked}}locked disabled {{/if}}{{#if _classes}}{{_classes}}{{/if}}" 
     {{#if _isHidden}}disabled="disabled" {{/if}}
     aria-label="{{#if _isLocked}}{{@root/_globals._accessibility._ariaLabels.locked}}{{else if _isComplete}}{{@root/_globals._accessibility._ariaLabels.complete}}{{else}}{{@root/_globals._accessibility._ariaLabels.incomplete}}{{/if}} {{{compile ariaLabel this}}}" 
-    tooltip="{{#if _showToolTip}}{{{compile toolTip this}}}{{/if}}">
+    tooltip="{{#if _showTooltip}}{{{compile tooltip this}}}{{/if}}">
 	<span class="text">
 	{{{compile text this}}}
 	</span>

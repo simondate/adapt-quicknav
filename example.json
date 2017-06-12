@@ -23,8 +23,8 @@
                     "_icon": "",
                     "text": "< Previous",
                     "ariaLabel": "Previous Page",
-                    "_showToolTip": true,
-                    "toolTip": "{{displayTitle}}",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
                     "_customRouteId": ""
                 },
                 "_root": {
@@ -34,8 +34,8 @@
                     "_icon": "",
                     "text": "Go to main menu",
                     "ariaLabel": "Got to Main menu",
-                    "_showToolTip": true,
-                    "toolTip": "{{displayTitle}}",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
                     "_customRouteId": ""
                 },
                 "_up": {
@@ -45,8 +45,8 @@
                     "_icon": "",
                     "text": "Back to menu",
                     "ariaLabel": "Back to menu",
-                    "_showToolTip": true,
-                    "toolTip": "{{displayTitle}}",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
                     "_customRouteId": "co-10"
                 },
                 "_next": {
@@ -56,8 +56,8 @@
                     "_icon": "",
                     "text": "Next >",
                     "ariaLabel": "Next Page",
-                    "_showToolTip": true,
-                    "toolTip": "{{displayTitle}}",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
                     "_customRouteId": ""
                 },
                 "_sibling": {
@@ -67,8 +67,8 @@
                     "_icon": "",
                     "text": "{{inc index}}",
                     "ariaLabel": "Page {{inc index}}",
-                    "_showToolTip": true,
-                    "toolTip": "{{displayTitle}}",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
                     "_customRouteId": ""
                 }
             }

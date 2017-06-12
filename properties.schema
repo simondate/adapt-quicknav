@@ -66,10 +66,10 @@
               "inputType": "Text",
               "validators": []
             },
-            "_icon": {
+            "_iconClass": {
               "type": "string",
               "required": false,
-              "title": "Icon",
+              "title": "Icon class",
               "default": "",
               "inputType": "Text",
               "validators": []
@@ -89,7 +89,7 @@
               "inputType": "Text",
               "validators": []
             },
-            "_showToolTip": {
+            "_showTooltip": {
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
@@ -97,7 +97,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "tooltip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -146,10 +146,10 @@
               "inputType": "Text",
               "validators": []
             },
-            "_icon": {
+            "_iconClass": {
               "type": "string",
               "required": false,
-              "title": "Icon",
+              "title": "Icon class",
               "default": "",
               "inputType": "Text",
               "validators": []
@@ -165,11 +165,11 @@
               "type": "string",
               "required": true,
               "title": "ARIA label",
-              "default": "Got to main menu",
+              "default": "Go to main menu",
               "inputType": "Text",
               "validators": []
             },
-            "_showToolTip": {
+            "_showTooltip": {
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
@@ -177,7 +177,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "tooltip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -226,10 +226,10 @@
               "inputType": "Text",
               "validators": []
             },
-            "_icon": {
+            "_iconClass": {
               "type": "string",
               "required": false,
-              "title": "Icon",
+              "title": "Icon class",
               "default": "",
               "inputType": "Text",
               "validators": []
@@ -249,7 +249,7 @@
               "inputType": "Text",
               "validators": []
             },
-            "_showToolTip": {
+            "_showTooltip": {
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
@@ -257,7 +257,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "tooltip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -306,10 +306,10 @@
               "inputType": "Text",
               "validators": []
             },
-            "_icon": {
+            "_iconClass": {
               "type": "string",
               "required": false,
-              "title": "Icon",
+              "title": "Icon class",
               "default": "",
               "inputType": "Text",
               "validators": []
@@ -329,7 +329,7 @@
               "inputType": "Text",
               "validators": []
             },
-            "_showToolTip": {
+            "_showTooltip": {
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
@@ -337,7 +337,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "tooltip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",
@@ -386,10 +386,10 @@
               "inputType": "Text",
               "validators": []
             },
-            "_icon": {
+            "_iconClass": {
               "type": "string",
               "required": false,
-              "title": "Icon",
+              "title": "Icon class",
               "default": "",
               "inputType": "Text",
               "validators": []
@@ -409,7 +409,7 @@
               "inputType": "Text",
               "validators": []
             },
-            "_showToolTip": {
+            "_showTooltip": {
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
@@ -417,7 +417,7 @@
               "inputType": "Checkbox",
               "validators": []
             },
-            toolTip": {
+            "tooltip": {
               "type": "string",
               "required": false,
               "title": "Tool tip",

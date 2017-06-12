@@ -36,14 +36,19 @@ define([
                 if (child.get("_type") === "component") {
 
                     descendants.push(child);
+                    continue;
 
-                } else {
+                }
 
-                    var subDescendants = child.getDescendants(parentFirst);
-                    if (parentFirst == true) descendants.push(child);
-                    descendants = descendants.concat(subDescendants.models);
-                    if (parentFirst != true) descendants.push(child);
+                var subDescendants = child.getAllDescendantsQuickNav(parentFirst);
+                if (parentFirst === true) {
+                    descendants.push(child);
+                }
 
+                descendants = descendants.concat(subDescendants);
+                
+                if (parentFirst !== true) {
+                    descendants.push(child);
                 }
 
             }

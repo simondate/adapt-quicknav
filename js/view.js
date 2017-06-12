@@ -3,7 +3,7 @@ define([
     'core/js/adapt',
     'core/js/views/componentView',
     './tooltip'
-], function(Adapt, ComponentView, ToolTip) {
+], function(Adapt, ComponentView, Tooltip) {
 
     var View = ComponentView.extend({
        
@@ -11,7 +11,7 @@ define([
 
         events: {
             "click button": "onButtonClick",
-            "mouseover button": "onButtonToolTip"
+            "mouseover button": "onButtonTooltip"
         },
 
         preRender: function() {
@@ -63,9 +63,8 @@ define([
 
             var $button = $(button);
             var id = $button.attr("data-id");
-            var type = $button.attr("data-type");
 
-            if (!id) return
+            if (!id) return;
 
             var model = Adapt.findById(id);
 
@@ -99,7 +98,7 @@ define([
 
         },
 
-        onButtonToolTip: function(event) {
+        onButtonTooltip: function(event) {
 
             var $target = $(event.currentTarget);
             var id = $target.attr("data-id");
@@ -108,9 +107,8 @@ define([
                 return;
             }
 
-            var tooltip = $target.attr("tooltip");
             // If tooltip isn't defined allow the event to propogate down to the document
-            if (!tooltip) {
+            if (!$target.attr("tooltip")) {
                 return;
             }
 
@@ -122,15 +120,15 @@ define([
 
                 var type = $target.attr("data-type");
                 var index = $target.attr("data-index");
-                var isCurrentToolTip = (Adapt.tooltip.type === type) && (Adapt.tooltip.index === index);
+                var isCurrentTooltip = (Adapt.tooltip.type === type) && (Adapt.tooltip.index === index);
                 
-                if (isCurrentToolTip) {
+                if (isCurrentTooltip) {
                     return;
                 }
                 
             }
 
-            var tooltip = new ToolTip({
+            var tooltip = new Tooltip({
                 $target: $target,
                 model: Adapt.findById(id)
             });

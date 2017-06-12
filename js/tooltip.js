@@ -2,13 +2,13 @@ define([
     'core/js/adapt'
 ], function(Adapt) {
 
-    var ToolTip = Backbone.View.extend({
+    var Tooltip = Backbone.View.extend({
         
         className: "tooltip",
 
         initialize: function(options) {
 
-            this.removeOtherToolTips();
+            this.removeOtherTooltips();
             this.setupEventListeners();
             this.setupData(options);
             
@@ -16,7 +16,7 @@ define([
 
         },
 
-        removeOtherToolTips: function() {
+        removeOtherTooltips: function() {
 
             Adapt.trigger("tooltip:remove");
             Adapt.tooltip = this;
@@ -34,7 +34,7 @@ define([
                 "device:resize": this.checkPosition,
                 "tooltip:remove": this.remove,
                 "remove": this.remove
-            })
+            });
 
         },
 
@@ -133,6 +133,6 @@ define([
 
     });
 
-    return ToolTip;
+    return Tooltip;
 
 });

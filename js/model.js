@@ -145,7 +145,7 @@ define([
                 if (isNotAvailable) continue;
 
                 if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
-                    hasFoundCurrentPage = true
+                    hasFoundCurrentPage = true;
                     continue;
                 } 
 
@@ -174,7 +174,7 @@ define([
                 if (isNotAvailable) continue;
 
                 if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
-                    hasFoundCurrentPage = true
+                    hasFoundCurrentPage = true;
                     continue;
                 } 
 
