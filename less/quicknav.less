@@ -6,7 +6,7 @@
 
     button {
         line-height: inherit;
-        margin: 2.5px;
+        margin: 3px;
         min-height: inherit;
         padding: 20px;
         vertical-align: top;
@@ -14,6 +14,10 @@
         &.icon {
             color: @button-text-color;
             display: inline-block;
+
+            &:before {
+                line-height: 1;
+            }
         }
 
         &.selected {
@@ -30,6 +34,7 @@
             .button-text;
             display: inline-block;
             font-family: @font-family;
+            line-height: 135%;
             min-width: 24px;
             vertical-align: text-bottom;
 

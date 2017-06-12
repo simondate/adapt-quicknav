@@ -6,8 +6,10 @@
     {{#if _isHidden}}disabled="disabled" {{/if}}
     aria-label="{{#if _isLocked}}{{@root/_globals._accessibility._ariaLabels.locked}}{{else if _isComplete}}{{@root/_globals._accessibility._ariaLabels.complete}}{{else}}{{@root/_globals._accessibility._ariaLabels.incomplete}}{{/if}} {{{compile ariaLabel this}}}" 
     tooltip="{{#if _showTooltip}}{{{compile tooltip this}}}{{/if}}">
-	<span class="text">
+    {{#if text}}
+	<div class="text">
 	{{{compile text this}}}
-	</span>
+	</div>
+	{{/if}}
 </button>
 {{/if}}
