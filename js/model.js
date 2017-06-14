@@ -46,6 +46,10 @@ define([
                 var buttonModel = buttonTypeModels[attrName];
 
                 if (attrName === "_sibling") {
+                    
+                    // Skip if only one sibling
+                    if (buttonModel.length <= 1) continue;
+                    
                     // Generate sibling entries
                     _.each(buttonModel, function(model, index) {
 
