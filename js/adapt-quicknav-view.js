@@ -43,28 +43,61 @@ define([
 		},
 
 		setLocking: function() {
-			this.model.state._locked = false;
 
-			if (this.model.config._lock) {
-				var contentObjects = this.model.config._lock;
-				var completeCount = 0;
-
-				for (var i = 0; i < contentObjects.length; i++) {
-					var contentObject = Adapt.contentObjects.findWhere({_id:contentObjects[i]});
-
-					if (contentObject.get("_isComplete") || !contentObject.get("_isAvailable")) completeCount++;
-				}
-
-				if (completeCount < contentObjects.length) {
-					this.model.state._locked = true;
-				}
+			var nextModel = this.getNextPageModel();
+			if (nextModel.get("_isLocked")) {
+				this.listenTo(nextModel, "change:_isLocked", _.bind(function(model, val) {
+					this.toggleLock("#next", val);
+				}, this));
+				this.toggleLock("#next", true);
 			}
 
-			if (this.model.state._locked === true) {
-				this.$('#next').attr("disabled", "disabled");
+			var previousModel = this.getPrevPageModel();
+			if (previousModel.get("_isLocked")) {
+				this.listenTo(previousModel, "change:_isLocked", _.bind(function(model, val) {
+					this.toggleLock("#previous", val);
+				}, this));
+				this.toggleLock("#previous", true);
+			}
+
+		},
+
+		toggleLock: function(selector, isLocked) {
+			if (isLocked) {
+				this.$(selector).attr("disabled", "disabled");
 			} else {
-				this.$('#next').removeAttr("disabled");
+				this.$(selector).removeAttr("disabled");
 			}
+		},
+
+		getPrevPageModel: function() {
+
+			var params = Adapt.quicknav.getParameters();
+
+			if (params.pages === undefined) return;
+
+			var indexOfCurrentPage = _.indexOf(params.pages, Adapt.quicknav.state.currentPage.model.get("_id"));
+			var indexOfPreviousPage = Adapt.quicknav.getPrevPageIndex(params.menus, params.indexOfMenu, params.pages, indexOfCurrentPage);
+
+			var pageId = params.pages[indexOfPreviousPage];
+
+			return Adapt.findById(pageId);
+
+		},
+
+		getNextPageModel: function() {
+
+			var params = Adapt.quicknav.getParameters();
+
+			if (params.pages === undefined) return;
+
+			var indexOfCurrentPage = _.indexOf(params.pages, Adapt.quicknav.state.currentPage.model.get("_id"));
+			var indexOfNextPage = Adapt.quicknav.getNextPageIndex(params.menus, params.indexOfMenu, params.pages, indexOfCurrentPage);
+
+			var pageId = params.pages[indexOfNextPage];
+
+			return Adapt.findById(pageId);
+
 		},
 
 		onRootClicked: function() {
