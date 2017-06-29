@@ -48,6 +48,8 @@ define([
 		},
 
 		navigateTo: function(id) {
+			if (id === Adapt.course.get("_id")) id = "/";
+
 			var hash = "#" + (id === "/" ? id : "/id/" + id);
 			Backbone.history.navigate(hash, {
 				trigger: true, 
@@ -102,7 +104,7 @@ define([
 				indexOfPage-=1; //previous page
 			}
 
-			if(this.isPageAvailable(pages, indexOfPage)) {
+			if (this.isPageAvailable(pages, indexOfPage)) {
 				return indexOfPage;
 			} else {
 				//uh-oh, that page isn't available - try again
@@ -143,7 +145,7 @@ define([
 				indexOfPage+=1; //next page
 			}
 
-			if(this.isPageAvailable(pages, indexOfPage)) {
+			if (this.isPageAvailable(pages, indexOfPage)) {
 				return indexOfPage;
 			} else {
 				//uh-oh, that page isn't available - try again
