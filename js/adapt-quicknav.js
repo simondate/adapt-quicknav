@@ -212,7 +212,7 @@ define([
 		var blocks = pageModel.findDescendants("blocks");
 
 		var parentId = pageModel.get("_parentId");
-		quicknav.state.currentMenu = _.find(menus, function(model) { return (model.get("_id") === parentId); });;
+		quicknav.state.currentMenu = _.find(menus, function(model) { return (model.get("_id") === parentId); });
 		quicknav.state.currentPage = pageView;
 		quicknav.state.lastBlock = blocks.last();
 		quicknav.config = config;
