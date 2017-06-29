@@ -190,7 +190,8 @@ define([
 	quicknav = new quicknav();
 
 	Adapt.on("app:dataReady", function() {
-		var menus = Adapt.contentObjects.where({_type: "menu"});
+		var menus = [Adapt.course].concat(Adapt.contentObjects.where({_type: "menu"}));
+
 		_.each(menus, function(menu) {
 			var id = menu.get("_id");
 			quicknav.menuStructure[id] = {};
@@ -207,10 +208,11 @@ define([
 		var config = pageModel.get("_quicknav");
 		if (config._isEnabled !== true && config._isEnabled !== undefined) return;
 
+		var menus = [Adapt.course].concat(Adapt.contentObjects.where({_type: "menu"}));
 		var blocks = pageModel.findDescendants("blocks");
 
 		var parentId = pageModel.get("_parentId");
-		quicknav.state.currentMenu = Adapt.findById(parentId);
+		quicknav.state.currentMenu = _.find(menus, function(model) { return (model.get("_id") === parentId); });;
 		quicknav.state.currentPage = pageView;
 		quicknav.state.lastBlock = blocks.last();
 		quicknav.config = config;
