@@ -171,6 +171,11 @@ define([
 				pages = _.keys(this.menuStructure[this.state.currentMenu.get("_id")]);
 			}
 
+			pages = _.reject(pages, function(id) {
+				var model = Adapt.contentObjects.findWhere({_id: id});
+				return !model.get('_isAvailable');
+			});
+
 			if (pages === undefined) return;
 
 			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
@@ -189,7 +194,7 @@ define([
 			}
 		}
 	});
-	quicknav = new quicknav();
+	var quicknav = Adapt.quicknav = new quicknav();
 
 	Adapt.on("app:dataReady", function() {
 		var menus = [Adapt.course].concat(Adapt.contentObjects.where({_type: "menu"}));
