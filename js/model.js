@@ -20,10 +20,10 @@ define([
 
         getNavigationData: function() {
 
-        /* 
+           /* 
             * Combine the config, model, order, index and type for each _buttons
             * Add each combined item to an array
-        */
+            */
 
             var buttonTypeModels = {
                 "_page": this.getCurrentPage(),
@@ -205,6 +205,7 @@ define([
                     break;
                 case "local":
                     loop = true;
+                    /* falls through */
                 default:
                     var currentMenu = this.getCurrentMenu();
                     descendants = currentMenu.getAllDescendantsQuickNav(true);
