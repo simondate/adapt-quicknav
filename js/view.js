@@ -59,7 +59,7 @@ define([
 
         },
 
-        checkButtonState(button) {
+        checkButtonState: function(button) {
 
             var $button = $(button);
             var id = $button.attr("data-id");
