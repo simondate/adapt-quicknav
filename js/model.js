@@ -36,7 +36,9 @@ define([
 
             var data = [];
 
-            var buttons = this.get("_quicknav")._buttons;
+            var config = this.get("_quicknav");
+
+            var buttons = config ? config._buttons : {};
             var order = 0;
             var item;
 
@@ -196,9 +198,11 @@ define([
 
             var config = this.get("_quicknav");
 
+            if (!config) return [];
+
             var loop = false;
             var descendants;
-            switch (config._isContinuous) {
+            switch (config._loopType) {
                 case "global":
                     loop = true;
                     descendants = Adapt.course.getAllDescendantsQuickNav(true);
