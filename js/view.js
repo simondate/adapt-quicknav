@@ -7,7 +7,7 @@ define([
 
     function getAttributes($node){
         var attrs = {};
-        $.each($node[0].attributes, function (index, attribute) {
+        _.each($node[0].attributes, function (attribute) {
             attrs[attribute.name] = attribute.value;
         });
         return attrs;
