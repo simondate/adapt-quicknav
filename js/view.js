@@ -5,6 +5,14 @@ define([
     './tooltip'
 ], function(Adapt, ComponentView, Tooltip) {
 
+    function getAttributes($node){
+        var attrs = {};
+        $.each($node[0].attributes, function (index, attribute) {
+            attrs[attribute.name] = attribute.value;
+        });
+        return attrs;
+    }
+
     var View = ComponentView.extend({
        
         className: "quicknav",
@@ -63,25 +71,38 @@ define([
 
             var $button = $(button);
             var id = $button.attr("data-id");
+            var index = $button.attr("data-item-index");
 
             if (!id) return;
 
-            var model = Adapt.findById(id);
+            // get the button data
+            var items = this.model.getNavigationData();
+            var data = items[index];
 
-            if (model.get("_isComplete")) {
-                $button.addClass("complete");
-            }
-
-            if (id === this.model.getCurrentPage().get("_id")) {
-                $button.addClass("selected");
-            }
-
-            if (model.get("_isLocked")) {
-                $button.addClass("locked").addClass("disabled");
+            // rerender the button
+            var $buttonRendered = $(Handlebars.partials['quicknav-item'](data));
+            if ($buttonRendered.length === 0) {
+                $button.remove();
                 return;
             }
-            
-            $button.removeClass("locked").removeClass("disabled");
+
+            // get button attribute names from current and rerendered
+            var renderedAttrs = getAttributes($buttonRendered);
+            var attrs = getAttributes($button);
+            var renderedAttrNames = _.keys(renderedAttrs);
+            var attrNames = _.keys(attrs);
+
+            // remove redundant attributes
+            var removeAttrNames = _.difference(renderedAttrNames, attrNames);
+            removeAttrNames.forEach(function(name) {
+                $button.removeAtrr(name);
+            });
+
+            // update remaining attributes
+            $button.attr(renderedAttrs);
+
+            // update button text
+            $button.html($buttonRendered.html());
 
         },
 

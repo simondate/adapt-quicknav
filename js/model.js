@@ -87,6 +87,10 @@ define([
             data.sort(function(a, b) {
                 return a._order - b._order;
             });
+            
+            data.forEach(function(item, index) {
+                item._index = index;
+            });
 
             return data;
 
