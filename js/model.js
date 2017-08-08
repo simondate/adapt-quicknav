@@ -71,7 +71,6 @@ define([
 
                 // Find buttonModel from config._customRouteId if not found in defined type
                 if (buttonConfig._customRouteId) buttonModel = Adapt.findById(buttonConfig._customRouteId);
-                buttonModel = buttonModel || Adapt.findById(buttonConfig._customRouteId);
 
                 // Convert found buttonModel to json if exists or create an "undefined" json
                 item = buttonModel ? buttonModel.toJSON() : { "_isHidden": true };
@@ -95,10 +94,10 @@ define([
 
         getCurrentPage: function() {
 
-            var parents = this.getParents();
-            for (var i = 0, l = parents.models.length; i < l; i++) {
+            var parents = this.getAncestorModels ? this.getAncestorModels() : this.getParents().models;
+            for (var i = 0, l = parents.length; i < l; i++) {
 
-                var model = parents.models[i];
+                var model = parents[i];
                 switch (model.get("_type")) {
                     case "page":
                         return model;
@@ -110,10 +109,10 @@ define([
 
         getCurrentMenu: function() {
 
-            var parents = this.getParents();
-            for (var i = 0, l = parents.models.length; i < l; i++) {
+            var parents = this.getAncestorModels ? this.getAncestorModels() : this.getParents().models;
+            for (var i = 0, l = parents.length; i < l; i++) {
 
-                var model = parents.models[i];
+                var model = parents[i];
                 switch (model.get("_type")) {
                     case "menu": case "course":
                         return model;
