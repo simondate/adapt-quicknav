@@ -1,83 +1,81 @@
-// To go in the contentObject.json file for each page
-
-"_quicknav": {
-    "_isEnabled": true,
-    "_isContinuous": "global",  //global (loop through menus+pages) / local (loop through pages ) / false (disable next+prev buttons at start and end)
-    "_injectIntoSelector": "", //force append to selector instead of page
-    "_global": { //change the flow for global continuous
-        "_pageNext":"co-10", // remove if to follow normal flow
-        "_pagePrevious": "co-10" // remove if to follow normal flow
-    }, 
-    "_buttons": {
-        "_root": {
-            "_isHidden": false,
-            "text": "Go to main menu"
-        },
-        "_up": {
-            "_isHidden": false,
-            "text": "Back to menu"
-        },
-        "_previous": {
-            "_isHidden": false,
-            "text": "< Previous"
-        },
-        "_next": {
-            "_isHidden": false,
-            "text": "Next >"
+// To go in the component.json file for each page
+    {
+        "_id": "c-04",
+        "_parentId": "b-04",
+        "_type": "component",
+        "_component": "quicknav",
+        "_classes": "",
+        "_layout": "left",
+        "title": "",
+        "displayTitle": "",
+        "body": "",
+        "instruction": "",
+        "_quicknav": {
+            "_comment": "allPages = loop sequentially through all pages in course",
+            "_comment": "siblings = loop sequentially through all pages in current parent object",
+            "_comment": "none = disable previous and next buttons at start and end of the pages in the current parent object",
+            "_loopType": "false",
+            "_buttons": {
+                "_previous": {
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
+                    "_iconClass": "",
+                    "_alignIconRight": false,
+                    "text": "< Previous",
+                    "ariaLabel": "Previous Page",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
+                    "_customRouteId": ""
+                },
+                "_root": {
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
+                    "_iconClass": "",
+                    "_alignIconRight": false,
+                    "text": "Go to main menu",
+                    "ariaLabel": "Got to Main menu",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
+                    "_customRouteId": ""
+                },
+                "_up": {
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
+                    "_iconClass": "",
+                    "_alignIconRight": false,
+                    "text": "Back to menu",
+                    "ariaLabel": "Back to menu",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
+                    "_customRouteId": "co-10"
+                },
+                "_next": {
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
+                    "_iconClass": "",
+                    "_alignIconRight": true,
+                    "text": "Next >",
+                    "ariaLabel": "Next Page",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
+                    "_customRouteId": ""
+                },
+                "_sibling": {
+                    "_isEnabled": true,
+                    "_order": 1,
+                    "_classes": "",
+                    "_iconClass": "",
+                    "_alignIconRight": false,
+                    "text": "{{inc index}}",
+                    "ariaLabel": "Page {{inc index}}",
+                    "_showTooltip": true,
+                    "tooltip": "{{displayTitle}}",
+                    "_customRouteId": ""
+                }
+            }
         }
     },
-    "_isEnableNextOnCompletion": true,
-    "_lock": [
-        "co-05",
-        "co-10",
-        "co-15",
-        "co-20"
-    ]
-}
-
-// Alternative theme using icons
-"_quicknav": {
-    "_isEnabled": true,
-    "_isContinuous": "global",
-    "_injectIntoSelector": "",
-    "_global": {
-        "_pageNext":"co-10",
-        "_pagePrevious": "co-10"
-    },
-    "_buttons": {
-        "_hasIcons": true, // Add option and set to true to enable Quicknav icons
-        "_root": {
-            "_isHidden": false,
-            "text": "Menu",
-            "_icon": "icon-home" // Define using _icon for each button. Icon pulls from vanilla font set
-        },
-        "_up": {
-            "_isHidden": true,
-            "text": "Back to menu",
-            "_icon": "icon-home"
-        },
-        "_previous": {
-            "_isHidden": true,
-            "text": "Previous",
-            "_icon": "icon-controls-left"
-        },
-        "_next": {
-            "_isHidden": false,
-            "text": "Next",
-            "_icon": "icon-controls-right"
-        }
-    }
-}
-
-//to go in components.json
-//if you want a component in which to place the quicknav, please add:
-//NOTE: please remove _injectIntoSelector from above
-{
-    "_id": "c-61",
-    "_parentId": "b-48",
-    "_type": "component",
-    "_component": "quicknav",
-    "_classes": "",
-    "_layout": "full",
-    "title": "c-48"
-},
