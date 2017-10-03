@@ -82,7 +82,8 @@
               "required": true,
               "default": "< Previous",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "ariaLabel": {
               "type": "string",
@@ -90,7 +91,8 @@
               "title": "ARIA label",
               "default": "Previous Page",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_showTooltip": {
               "type": "boolean",
@@ -106,7 +108,8 @@
               "title": "Tool tip",
               "default": "{{displayTitle}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_customRouteId": {
               "type": "boolean",
@@ -169,7 +172,8 @@
               "required": true,
               "default": "Go to main menu",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "ariaLabel": {
               "type": "string",
@@ -177,7 +181,8 @@
               "title": "ARIA label",
               "default": "Go to main menu",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_showTooltip": {
               "type": "boolean",
@@ -193,7 +198,8 @@
               "title": "Tool tip",
               "default": "{{displayTitle}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_customRouteId": {
               "type": "boolean",
@@ -256,7 +262,8 @@
               "required": true,
               "default": "Back to menu",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "ariaLabel": {
               "type": "string",
@@ -264,7 +271,8 @@
               "title": "ARIA label",
               "default": "Back to menu",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_showTooltip": {
               "type": "boolean",
@@ -280,7 +288,8 @@
               "title": "Tool tip",
               "default": "{{displayTitle}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_customRouteId": {
               "type": "boolean",
@@ -343,7 +352,8 @@
               "required": true,
               "default": "Next >",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "ariaLabel": {
               "type": "string",
@@ -351,7 +361,8 @@
               "title": "ARIA label",
               "default": "Next Page",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_showTooltip": {
               "type": "boolean",
@@ -367,7 +378,8 @@
               "title": "Tool tip",
               "default": "{{displayTitle}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_customRouteId": {
               "type": "boolean",
@@ -430,7 +442,8 @@
               "required": true,
               "default": "{{inc index}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "ariaLabel": {
               "type": "string",
@@ -438,7 +451,8 @@
               "title": "ARIA label",
               "default": "Page {{inc index}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_showTooltip": {
               "type": "boolean",
@@ -454,7 +468,8 @@
               "title": "Tool tip",
               "default": "{{displayTitle}}",
               "inputType": "Text",
-              "validators": []
+              "validators": [],
+              "translatable": true
             },
             "_customRouteId": {
               "type": "boolean",
