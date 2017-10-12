@@ -304,7 +304,7 @@
         "_next": {
           "type": "object",
           "required": true,
-          "title": "Up button",
+          "title": "Next button",
           "properties": {
             "_isEnabled": {
               "type": "boolean",
