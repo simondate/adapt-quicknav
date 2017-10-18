@@ -35,9 +35,9 @@ define([
             };
 
             var data = [];
-
             var buttons = this.get('_buttons');
-            if(!buttons){
+
+            if(!buttons) {
                 return data;
             }
 
