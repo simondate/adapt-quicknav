@@ -35,12 +35,15 @@ define([
             };
 
             var data = [];
+            var buttons = this.get('_buttons');
 
-            var config = this.get("_quicknav");
+            if (!buttons) {
+                return data;
+            }
 
-            var buttons = config ? config._buttons : {};
             var order = 0;
             var item;
+
 
             for (var attrName in buttons) {
 
@@ -155,8 +158,8 @@ define([
 
                 if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
                     hasFoundCurrentPage = true;
-                    continue;
-                } 
+                    continue
+                }
 
                 if (hasFoundCurrentPage) {
                     return page;
@@ -199,13 +202,13 @@ define([
 
         getPages: function() {
 
-            var config = this.get("_quicknav");
+            var loopStyle = this.get("_loopStyle");
 
-            if (!config) return [];
+            if (!loopStyle) return [];
 
             var loop = false;
             var descendants;
-            switch (config._loopType) {
+            switch (loopStyle) {
                 case "global":
                     loop = true;
                     descendants = Adapt.course.getAllDescendantsQuickNav(true);
