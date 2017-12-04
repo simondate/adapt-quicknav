@@ -36,9 +36,7 @@ define([
         render: function() {
 
             var template = Handlebars.templates["quicknav"];
-            var data = _.extend( this.model.toJSON(), { 
-                _items: this.model.getNavigationData() 
-            });
+            var data = this.model.getData();
 
             this.$el.html(template(data));
 
@@ -115,8 +113,22 @@ define([
             if (isLocked || isSelected) return;
 
             var id = $target.attr("data-id");
-            this.navigateTo(id);
+            var index = $target.attr("data-item-index");
 
+            switch (id) {
+                case "":
+                    var data = this.model.getData();
+                    try {
+                        var execute = new Function(data._items[index]._onClick||"");
+                        execute();
+                    } catch (err) {
+                        Adapt.log.error(err);
+                    }
+                    break;
+                default:
+                    this.navigateTo(id);
+                    break;
+            }
         },
 
         onButtonTooltip: function(event) {

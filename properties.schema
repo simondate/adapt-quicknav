@@ -480,6 +480,96 @@
               "validators": []
             }
           }
+        },
+        "_close": {
+          "type": "object",
+          "required": true,
+          "title": "Close button",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Show",
+              "default": true,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_order": {
+              "type":" number",
+              "required": true,
+              "default": 0,
+              "title": "Order",
+              "inputType":"Number",
+              "validators": ["required", "number"],
+              "help": "Button display order"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Classes",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "Icon class",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "Close",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "ARIA label",
+              "default": "Close window",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Show tool tip",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Tool tip",
+              "default": "Close window",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_customRouteId": {
+              "type": "boolean",
+              "required": true,
+              "title": "Override the route id",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            }
+          }
         }
       }
     }
