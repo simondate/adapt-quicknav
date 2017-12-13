@@ -18,6 +18,13 @@ define([
 
         },
 
+        getData: function() {
+            var data = _.extend( this.toJSON(), { 
+                _items: this.getNavigationData() 
+            });
+            return data;
+        },
+
         getNavigationData: function() {
 
            /* 
@@ -31,7 +38,11 @@ define([
                 "_root": Adapt.course,
                 "_next": this.getNextPage(),
                 "_previous": this.getPrevPage(),
-                "_sibling": this.getSiblingPages()
+                "_sibling": this.getSiblingPages(),
+                "_close": new Backbone.Model({
+                    "_id": "",
+                    "_onClick": "window.close();"
+                })
             };
 
             var data = [];
@@ -158,7 +169,7 @@ define([
 
                 if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
                     hasFoundCurrentPage = true;
-                    continue
+                    continue;
                 }
 
                 if (hasFoundCurrentPage) {
