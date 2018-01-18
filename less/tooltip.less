@@ -1,3 +1,8 @@
+// Prevents Quicknav tooltip from triggering render and potential overflow-x in IE11
+.ie.version-11-0 #wrapper {
+    overflow-x: visible;
+}
+
 .quicknav .tooltip {
     visibility: hidden;
 
