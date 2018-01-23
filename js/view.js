@@ -15,7 +15,9 @@ define([
 
     var View = ComponentView.extend({
        
-        className: "quicknav",
+        className: function() {
+            return "quicknav " + this.model.get('_id');
+        },
 
         events: {
             "click button": "onButtonClick",
