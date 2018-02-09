@@ -15,16 +15,14 @@ define([
 
     var View = ComponentView.extend({
        
-        className: function() {
-            return "quicknav " + this.model.get('_id');
-        },
-
         events: {
             "click button": "onButtonClick",
             "mouseover button": "onButtonTooltip"
         },
 
         preRender: function() {
+            
+            this.$el.addClass("quicknav " + this.model.get('_id'));
 
             _.bindAll(this, "postRender", "checkButtonStates");
 
