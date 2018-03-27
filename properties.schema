@@ -1,9 +1,9 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "$ref": "http://localhost/plugins/content/component/model.schema",
-  "properties":{
+  "properties": {
     "_supportedLayout": {
       "type": "string",
       "default": "full-width",
@@ -55,11 +55,11 @@
               "validators": []
             },
             "_order": {
-              "type":" number",
+              "type": "number",
               "required": true,
               "default": 0,
               "title": "Order",
-              "inputType":"Number",
+              "inputType": "Number",
               "validators": ["required", "number"],
               "help": "Button display order"
             },
@@ -145,11 +145,11 @@
               "validators": []
             },
             "_order": {
-              "type":" number",
+              "type": "number",
               "required": true,
               "default": 0,
               "title": "Order",
-              "inputType":"Number",
+              "inputType": "Number",
               "validators": ["required", "number"],
               "help": "Button display order"
             },
@@ -235,11 +235,11 @@
               "validators": []
             },
             "_order": {
-              "type":" number",
+              "type": "number",
               "required": true,
               "default": 0,
               "title": "Order",
-              "inputType":"Number",
+              "inputType": "Number",
               "validators": ["required", "number"],
               "help": "Button display order"
             },
@@ -325,11 +325,11 @@
               "validators": []
             },
             "_order": {
-              "type":" number",
+              "type": "number",
               "required": true,
               "default": 0,
               "title": "Order",
-              "inputType":"Number",
+              "inputType": "Number",
               "validators": ["required", "number"],
               "help": "Button display order"
             },
@@ -415,11 +415,11 @@
               "validators": []
             },
             "_order": {
-              "type":" number",
+              "type": "number",
               "required": true,
               "default": 0,
               "title": "Order",
-              "inputType":"Number",
+              "inputType": "Number",
               "validators": ["required", "number"],
               "help": "Button display order"
             },
@@ -505,11 +505,11 @@
               "validators": []
             },
             "_order": {
-              "type":" number",
+              "type": "number",
               "required": true,
               "default": 0,
               "title": "Order",
-              "inputType":"Number",
+              "inputType": "Number",
               "validators": ["required", "number"],
               "help": "Button display order"
             },
