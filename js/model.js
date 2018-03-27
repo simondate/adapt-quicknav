@@ -99,7 +99,7 @@ define([
             }
 
             data.sort(function(a, b) {
-                return a._order - b._order;
+                return a._order - b._order || a.index - b.index;
             });
             
             data.forEach(function(item, index) {
