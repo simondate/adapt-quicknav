@@ -19,15 +19,15 @@ define([
         },
 
         getData: function() {
-            var data = _.extend( this.toJSON(), { 
-                _items: this.getNavigationData() 
+            var data = _.extend( this.toJSON(), {
+                _items: this.getNavigationData()
             });
             return data;
         },
 
         getNavigationData: function() {
 
-           /* 
+           /*
             * Combine the config, model, order, index and type for each _buttons
             * Add each combined item to an array
             */
@@ -70,9 +70,9 @@ define([
                     _.each(buttonModel, function(model, index) {
 
                         item = model.toJSON();
-                        _.extend(item, buttonConfig, { 
-                            type: attrName, 
-                            index: index, 
+                        _.extend(item, buttonConfig, {
+                            type: attrName,
+                            index: index,
                             order: order++
                         });
                         data.push(item);
@@ -89,9 +89,9 @@ define([
                 // Convert found buttonModel to json if exists or create an "undefined" json
                 item = buttonModel ? buttonModel.toJSON() : { "_isHidden": true };
 
-                _.extend(item, buttonConfig, { 
-                    type: attrName, 
-                    index: 0, 
+                _.extend(item, buttonConfig, {
+                    type: attrName,
+                    index: 0,
                     order: order++
                 });
                 data.push(item);
@@ -199,7 +199,7 @@ define([
                 if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
                     hasFoundCurrentPage = true;
                     continue;
-                } 
+                }
 
                 if (hasFoundCurrentPage) {
                     return page;

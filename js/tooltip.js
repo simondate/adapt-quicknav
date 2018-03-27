@@ -12,7 +12,7 @@ define([
             this.setupEventListeners();
             this.setupData(options);
             
-            this.render();          
+            this.render();
 
         },
 
