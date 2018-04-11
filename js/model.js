@@ -33,6 +33,7 @@ define([
             */
 
             var buttonTypeModels = {
+                "_return": this.getReturnLocation(),
                 "_page": this.getCurrentPage(),
                 "_up": this.getCurrentMenu(),
                 "_root": Adapt.course,
@@ -110,6 +111,12 @@ define([
 
         },
 
+        getReturnLocation: function() {
+
+            return Adapt.findById(Adapt.location._previousId);
+
+        },
+
         getCurrentPage: function() {
 
             var parents = this.getAncestorModels ? this.getAncestorModels() : this.getParents().models;
@@ -132,7 +139,8 @@ define([
 
                 var model = parents[i];
                 switch (model.get("_type")) {
-                    case "menu": case "course":
+                    case "menu":
+                    case "course":
                         return model;
                 }
 

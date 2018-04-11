@@ -15,6 +15,18 @@
         "_comment": "none = disable previous and next buttons at start and end of the pages in the current parent object",
         "_loopStyle": "none",
         "_buttons": {
+            "_return": {
+                "_isEnabled": true,
+                "_order": 1,
+                "_classes": "",
+                "_iconClass": "",
+                "_alignIconRight": false,
+                "text": "< Return",
+                "ariaLabel": "Return to last location",
+                "_showTooltip": true,
+                "tooltip": "{{displayTitle}}",
+                "_customRouteId": ""
+            },
             "_previous": {
                 "_isEnabled": true,
                 "_order": 1,
@@ -34,7 +46,7 @@
                 "_iconClass": "",
                 "_alignIconRight": false,
                 "text": "Go to main menu",
-                "ariaLabel": "Got to Main menu",
+                "ariaLabel": "Go to main menu",
                 "_showTooltip": true,
                 "tooltip": "{{displayTitle}}",
                 "_customRouteId": ""
@@ -49,7 +61,7 @@
                 "ariaLabel": "Back to menu",
                 "_showTooltip": true,
                 "tooltip": "{{displayTitle}}",
-                "_customRouteId": "co-10"
+                "_customRouteId": ""
             },
             "_next": {
                 "_isEnabled": true,

@@ -4,6 +4,7 @@ adapt-quicknav
 <img src="demo.gif" alt="the quicknav extension in action" align="right">
 
 Navigation bar component which can contain some or all of the following buttons:
+- return (takes you back to the previous location - not back in history, just the last routed location)
 - home (takes you back to top level menu)
 - up (takes you to the menu the next level up in the hierarchy)
 - previous (navigates directly to the previous page, if exists, without having to navigate via the menu)
