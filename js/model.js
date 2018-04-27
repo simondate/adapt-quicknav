@@ -33,7 +33,7 @@ define([
             */
 
             var buttonTypeModels = {
-                "_return": this.getReturnLocation(),
+                "_returnToPreviousLocation": this.getReturnToPreviousLocation(),
                 "_page": this.getCurrentPage(),
                 "_up": this.getCurrentMenu(),
                 "_root": Adapt.course,
@@ -111,7 +111,7 @@ define([
 
         },
 
-        getReturnLocation: function() {
+        getReturnToPreviousLocation: function() {
 
             return Adapt.findById(Adapt.location._previousId);
 

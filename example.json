@@ -15,14 +15,14 @@
         "_comment": "none = disable previous and next buttons at start and end of the pages in the current parent object",
         "_loopStyle": "none",
         "_buttons": {
-            "_return": {
-                "_isEnabled": true,
+            "_returnToPreviousLocation": {
+                "_isEnabled": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
                 "_alignIconRight": false,
                 "text": "< Return",
-                "ariaLabel": "Return to last location",
+                "ariaLabel": "Return to previous location",
                 "_showTooltip": true,
                 "tooltip": "{{displayTitle}}",
                 "_customRouteId": ""
