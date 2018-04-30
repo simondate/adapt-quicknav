@@ -220,11 +220,11 @@ define([
             var loop = false;
             var descendants;
             switch (loopStyle) {
-                case "global":
+                case "allPages":
                     loop = true;
                     descendants = Adapt.course.getAllDescendantsQuickNav(true);
                     break;
-                case "local":
+                case "siblings":
                     loop = true;
                     /* falls through */
                 default:
