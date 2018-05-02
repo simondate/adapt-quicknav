@@ -24,8 +24,7 @@
                 "text": "< Return",
                 "ariaLabel": "Return to previous location",
                 "_showTooltip": true,
-                "tooltip": "{{displayTitle}}",
-                "_customRouteId": ""
+                "tooltip": "{{displayTitle}}"
             },
             "_previous": {
                 "_isEnabled": true,
