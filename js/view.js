@@ -29,7 +29,7 @@ define([
             this.setCompletionStatus();
 
             this.listenTo(Adapt, "remove", this.remove);
-            this.listenTo(this.model.getCurrentPage(), "change:_isComplete", this.onPageCompleted);
+            this.listenTo(Adapt.contentObjects, "change:_isComplete", this.onContentObjectComplete);
 
         },
 
@@ -51,7 +51,7 @@ define([
             
         },
 
-        onPageCompleted: function() {
+        onContentObjectComplete: function() {
 
             _.defer(this.checkButtonStates);
 
