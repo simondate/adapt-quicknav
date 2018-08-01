@@ -21,7 +21,9 @@ define([
         },
 
         preRender: function() {
-            
+
+            Adapt.trigger(this.constructor.type + 'View:preRender', this);
+
             this.$el.addClass("quicknav " + this.model.get('_id'));
 
             _.bindAll(this, "postRender", "checkButtonStates");
@@ -29,7 +31,9 @@ define([
             this.setCompletionStatus();
 
             this.listenTo(Adapt, "remove", this.remove);
-            this.listenTo(Adapt.contentObjects, "change:_isComplete", this.onContentObjectComplete);
+            this.listenTo(Adapt.contentObjects, {
+                "change:_isComplete change:_isLocked": this.onContentObjectComplete
+            });
 
         },
 
@@ -40,15 +44,19 @@ define([
 
             this.$el.html(template(data));
 
+            Adapt.trigger(this.constructor.type + 'View:render', this);
+
             _.defer(this.postRender);
 
         },
 
         postRender: function() {
 
+            Adapt.trigger(this.constructor.type + 'View:postRender', this);
+
             this.checkButtonStates();
             this.setReadyStatus();
-            
+
         },
 
         onContentObjectComplete: function() {
@@ -91,9 +99,9 @@ define([
             var attrNames = _.keys(attrs);
 
             // remove redundant attributes
-            var removeAttrNames = _.difference(renderedAttrNames, attrNames);
+            var removeAttrNames = _.difference(attrNames, renderedAttrNames);
             removeAttrNames.forEach(function(name) {
-                $button.removeAtrr(name);
+                $button.removeAttr(name);
             });
 
             // update remaining attributes
@@ -109,7 +117,7 @@ define([
             var $target = $(event.currentTarget);
             var isLocked = $target.hasClass("locked");
             var isSelected = $target.hasClass("selected");
-            
+
             if (isLocked || isSelected) return;
 
             var id = $target.attr("data-id");
@@ -154,11 +162,11 @@ define([
                 var type = $target.attr("data-type");
                 var index = $target.attr("data-index");
                 var isCurrentTooltip = (Adapt.tooltip.type === type) && (Adapt.tooltip.index === index);
-                
+
                 if (isCurrentTooltip) {
                     return;
                 }
-                
+
             }
 
             var tooltip = new Tooltip({

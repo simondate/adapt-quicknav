@@ -1,10 +1,11 @@
 {{#if _isEnabled}}
 <button
+    role="link"
     data-type="{{type}}"
     data-id="{{_id}}"
     data-item-index="{{_index}}"
     class="{{#if _isHidden}}hidden disabled {{/if}}{{#if _isLocked}}locked disabled {{/if}}{{#if _classes}}{{_classes}}{{/if}}"
-    {{#if _isHidden}}disabled="disabled" {{/if}}
+    {{#any _isHidden _isLocked}}disabled="disabled" {{/any}}
     aria-label="{{{compile ariaLabel this}}} {{#if _isLocked}}{{@root/_globals._accessibility._ariaLabels.locked}}{{else if _isComplete}}{{@root/_globals._accessibility._ariaLabels.complete}}{{else}}{{@root/_globals._accessibility._ariaLabels.incomplete}}{{/if}}"
     tooltip="{{#if _showTooltip}}{{{compile tooltip this}}}{{/if}}">
     {{#unless _alignIconRight}}
