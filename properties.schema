@@ -41,6 +41,88 @@
       "required": true,
       "title": "Buttons settings",
       "properties": {
+        "_returnToPreviousLocation": {
+          "type": "object",
+          "required": true,
+          "title": "Return to previous location button",
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "required": true,
+              "title": "Show",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "_order": {
+              "type": "number",
+              "required": true,
+              "default": 0,
+              "title": "Order",
+              "inputType": "Number",
+              "validators": ["required", "number"],
+              "help": "Button display order"
+            },
+            "_classes": {
+              "type": "string",
+              "required": false,
+              "title": "Classes",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_iconClass": {
+              "type": "string",
+              "required": false,
+              "title": "Icon class",
+              "default": "",
+              "inputType": "Text",
+              "validators": []
+            },
+            "_alignIconRight": {
+              "type": "boolean",
+              "required": true,
+              "title": "Align icon right",
+              "default": false,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "text": {
+              "type": "string",
+              "required": true,
+              "default": "< Return",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": true,
+              "title": "ARIA label",
+              "default": "Return to previous location",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            },
+            "_showTooltip": {
+              "type": "boolean",
+              "required": true,
+              "title": "Show tool tip",
+              "default": true,
+              "inputType": "Checkbox",
+              "validators": []
+            },
+            "tooltip": {
+              "type": "string",
+              "required": false,
+              "title": "Tool tip",
+              "default": "{{displayTitle}}",
+              "inputType": "Text",
+              "validators": [],
+              "translatable": true
+            }
+          }
+        },
         "_previous": {
           "type": "object",
           "required": true,
