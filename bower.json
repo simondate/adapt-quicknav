@@ -1,8 +1,11 @@
 {
   "name": "adapt-quicknav",
-  "repository": "git://github.com/cgkineo/adapt-quicknav",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cgkineo/adapt-quicknav"
+  },
   "framework": ">=3.1",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "homepage": "https://github.com/cgkineo/adapt-quicknav",
   "issues": "https://github.com/cgkineo/adapt-quicknav/issues/",
   "displayName": "Quick navigation",
