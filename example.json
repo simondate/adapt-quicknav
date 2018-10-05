@@ -5,7 +5,7 @@
         "_type": "component",
         "_component": "quicknav",
         "_classes": "",
-        "_layout": "left",
+        "_layout": "full",
         "title": "",
         "displayTitle": "",
         "body": "",
