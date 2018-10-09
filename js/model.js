@@ -56,7 +56,6 @@ define([
             var order = 0;
             var item;
 
-
             for (var attrName in buttons) {
 
                 var buttonConfig = buttons[attrName];
@@ -99,15 +98,14 @@ define([
 
             }
 
-            data.sort(function(a, b) {
-                return a._order - b._order || a.index - b.index;
-            });
-            
-            data.forEach(function(item, index) {
+            // requires a stable sorting algorithm - native sorting in Chrome is unstable (should be stable from Chrome 70)
+            var orderedData = _.sortBy(data, '_order');
+
+            orderedData.forEach(function(item, index) {
                 item._index = index;
             });
 
-            return data;
+            return orderedData;
 
         },
 
