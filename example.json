@@ -1,7 +1,7 @@
 // To go in the component.json file for each page
     {
-        "_id": "c-04",
-        "_parentId": "b-04",
+        "_id": "c-05",
+        "_parentId": "b-05",
         "_type": "component",
         "_component": "quicknav",
         "_classes": "",

@@ -1,138 +1,138 @@
 define([
-    'core/js/adapt'
+  'core/js/adapt'
 ], function(Adapt) {
 
-    var Tooltip = Backbone.View.extend({
-        
-        className: "tooltip",
+  var Tooltip = Backbone.View.extend({
 
-        initialize: function(options) {
+    className: "tooltip",
 
-            this.removeOtherTooltips();
-            this.setupEventListeners();
-            this.setupData(options);
-            
-            this.render();
+    initialize: function(options) {
 
-        },
+      this.removeOtherTooltips();
+      this.setupEventListeners();
+      this.setupData(options);
 
-        removeOtherTooltips: function() {
+      this.render();
 
-            Adapt.trigger("tooltip:remove");
-            Adapt.tooltip = this;
+    },
 
-        },
+    removeOtherTooltips: function() {
 
-        setupEventListeners: function() {
+      Adapt.trigger("tooltip:remove");
+      Adapt.tooltip = this;
 
-            _.bindAll(this, "remove", "postRender", "show");
-            this.show = _.debounce(this.show, 17);
+    },
 
-            $(document).on("mouseover", this.remove);
+    setupEventListeners: function() {
 
-            this.listenTo(Adapt, {
-                "device:resize": this.checkPosition,
-                "tooltip:remove": this.remove,
-                "remove": this.remove
-            });
+      _.bindAll(this, "remove", "postRender", "show");
+      this.show = _.debounce(this.show, 17);
 
-        },
+      $(document).on("mouseover", this.remove);
 
-        setupData: function(options) {
+      this.listenTo(Adapt, {
+        "device:resize": this.checkPosition,
+        "tooltip:remove": this.remove,
+        "remove": this.remove
+      });
 
-            this.$target = options.$target;
-            this.id = this.$target.attr("data-id");
-            this.type = this.$target.attr("data-type");
-            this.index = this.$target.attr("data-index");
+    },
 
-            this.model.set("tooltip", this.$target.attr("tooltip"));
+    setupData: function(options) {
 
-        },
+      this.$target = options.$target;
+      this.id = this.$target.attr("data-id");
+      this.type = this.$target.attr("data-type");
+      this.index = this.$target.attr("data-index");
 
-        render: function() {
+      this.model.set("tooltip", this.$target.attr("tooltip"));
 
-            var template = Handlebars.templates["quicknav-tooltip"];
+    },
 
-            this.$el.html(template(this.model.toJSON()));
-            _.defer(this.postRender);
+    render: function() {
 
-        },
+      var template = Handlebars.templates["quicknav-tooltip"];
 
-        postRender: function() {
+      this.$el.html(template(this.model.toJSON()));
+      _.defer(this.postRender);
 
-            if (this.isRemoved) return;
+    },
 
-            this.checkPosition();
-            this.show();
+    postRender: function() {
 
-        },
+      if (this.isRemoved) return;
 
-        checkPosition: function() {
+      this.checkPosition();
+      this.show();
 
-            if (this.isRemoved) return;
+    },
 
-            var buttonPosition = this.$target.position();
+    checkPosition: function() {
 
-            var triangleMarginLeft = parseInt(this.$(".triangle").css("margin-left"));
-            var triangleHalfWidth = (this.$(".triangle").outerWidth() / 2);
-            var triangleOverhang = (triangleMarginLeft+triangleHalfWidth);
+      if (this.isRemoved) return;
 
-            var buttonHalfWidth = (this.$target.outerWidth(true) / 2);
-            var buttonCenterLeft = (buttonPosition.left+buttonHalfWidth);
-            var buttonAdjustedLeft = (buttonCenterLeft-triangleOverhang);
+      var buttonPosition = this.$target.position();
 
-            var position = {
-                "top": buttonPosition.top,
-                "left": buttonAdjustedLeft,
-                "right": this.$el.outerWidth() + buttonAdjustedLeft
-            };
+      var triangleMarginLeft = parseInt(this.$(".triangle").css("margin-left"));
+      var triangleHalfWidth = (this.$(".triangle").outerWidth() / 2);
+      var triangleOverhang = (triangleMarginLeft+triangleHalfWidth);
 
-            var $offsetParent = this.$el.offsetParent();
+      var buttonHalfWidth = (this.$target.outerWidth(true) / 2);
+      var buttonCenterLeft = (buttonPosition.left+buttonHalfWidth);
+      var buttonAdjustedLeft = (buttonCenterLeft-triangleOverhang);
 
-            var parentLeft = $offsetParent.offset().left;
-            var parentRight = parentLeft + $offsetParent.innerWidth();
+      var position = {
+        "top": buttonPosition.top,
+        "left": buttonAdjustedLeft,
+        "right": this.$el.outerWidth() + buttonAdjustedLeft
+      };
 
-            var overflowRight = position.right - parentRight;
-            var overflowLeft = position.left - parentLeft;
+      var $offsetParent = this.$el.offsetParent();
 
-            var isOverflowingRight = (position.right > parentRight);
-            var isOverflowingLeft = (position.left <= parentLeft);
-            
-            var leftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? overflowLeft : 0;
-            
-            this.$el.css({
-                top: position.top,
-                left: position.left - leftOffset - 1
-            });
+      var parentLeft = $offsetParent.offset().left;
+      var parentRight = parentLeft + $offsetParent.innerWidth();
 
-            this.$el.find(".triangle").css({
-                left: leftOffset
-            });
+      var overflowRight = position.right - parentRight;
+      var overflowLeft = position.left - parentLeft;
 
-        },
+      var isOverflowingRight = (position.right > parentRight);
+      var isOverflowingLeft = (position.left <= parentLeft);
 
-        show: function() {
+      var leftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? overflowLeft : 0;
 
-            if (this.isRemoved) return;
+      this.$el.css({
+        top: position.top,
+        left: position.left - leftOffset - 1
+      });
 
-            this.$el.addClass("show");
+      this.$el.find(".triangle").css({
+        left: leftOffset
+      });
 
-        },
+    },
 
-        remove: function() {
+    show: function() {
 
-            this.isRemoved = true;
+      if (this.isRemoved) return;
 
-            delete this.$target;
-            delete Adapt.tooltip;
+      this.$el.addClass("show");
 
-            $(document).off("mouseover", this.onBodyMouseOver);
-            Backbone.View.prototype.remove.call(this);
+    },
 
-        }
+    remove: function() {
 
-    });
+      this.isRemoved = true;
 
-    return Tooltip;
+      delete this.$target;
+      delete Adapt.tooltip;
+
+      $(document).off("mouseover", this.onBodyMouseOver);
+      Backbone.View.prototype.remove.call(this);
+
+    }
+
+  });
+
+  return Tooltip;
 
 });

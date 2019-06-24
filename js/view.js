@@ -1,194 +1,194 @@
 
 define([
-    'core/js/adapt',
-    'core/js/views/componentView',
-    './tooltip'
+  'core/js/adapt',
+  'core/js/views/componentView',
+  './tooltip'
 ], function(Adapt, ComponentView, Tooltip) {
 
-    function getAttributes($node){
-        var attrs = {};
-        _.each($node[0].attributes, function (attribute) {
-            attrs[attribute.name] = attribute.value;
-        });
-        return attrs;
-    }
+  function getAttributes($node){
+    var attrs = {};
+    _.each($node[0].attributes, function (attribute) {
+      attrs[attribute.name] = attribute.value;
+    });
+    return attrs;
+  }
 
-    var View = ComponentView.extend({
-       
-        events: {
-            "click button": "onButtonClick",
-            "mouseover button": "onButtonTooltip"
-        },
+  var View = ComponentView.extend({
 
-        preRender: function() {
+    events: {
+      "click button": "onButtonClick",
+      "mouseover button": "onButtonTooltip"
+    },
 
-            Adapt.trigger(this.constructor.type + 'View:preRender', this);
+    preRender: function() {
 
-            this.$el.addClass("quicknav " + this.model.get('_id'));
+      Adapt.trigger(this.constructor.type + 'View:preRender', this);
 
-            _.bindAll(this, "postRender", "checkButtonStates");
+      this.$el.addClass("quicknav " + this.model.get('_id'));
 
-            this.setCompletionStatus();
+      _.bindAll(this, "postRender", "checkButtonStates");
 
-            this.listenTo(Adapt, "remove", this.remove);
-            this.listenTo(Adapt.contentObjects, {
-                "change:_isComplete change:_isLocked": this.onContentObjectComplete
-            });
+      this.setCompletionStatus();
 
-        },
+      this.listenTo(Adapt, "remove", this.remove);
+      this.listenTo(Adapt.contentObjects, {
+        "change:_isComplete change:_isLocked": this.onContentObjectComplete
+      });
 
-        render: function() {
+    },
 
-            var template = Handlebars.templates["quicknav"];
-            var data = this.model.getData();
+    render: function() {
 
-            this.$el.html(template(data));
+      var template = Handlebars.templates["quicknav"];
+      var data = this.model.getData();
 
-            Adapt.trigger(this.constructor.type + 'View:render', this);
+      this.$el.html(template(data));
 
-            _.defer(this.postRender);
+      Adapt.trigger(this.constructor.type + 'View:render', this);
 
-        },
+      _.defer(this.postRender);
 
-        postRender: function() {
+    },
 
-            Adapt.trigger(this.constructor.type + 'View:postRender', this);
+    postRender: function() {
 
-            this.checkButtonStates();
-            this.setReadyStatus();
+      Adapt.trigger(this.constructor.type + 'View:postRender', this);
 
-        },
+      this.checkButtonStates();
+      this.setReadyStatus();
 
-        onContentObjectComplete: function() {
+    },
 
-            _.defer(this.checkButtonStates);
+    onContentObjectComplete: function() {
 
-        },
+      _.defer(this.checkButtonStates);
 
-        checkButtonStates: function() {
+    },
 
-            this.$("button").each(_.bind(function(index, item) {
-                this.checkButtonState(item);
-            }, this));
+    checkButtonStates: function() {
 
-        },
+      this.$("button").each(_.bind(function(index, item) {
+        this.checkButtonState(item);
+      }, this));
 
-        checkButtonState: function(button) {
+    },
 
-            var $button = $(button);
-            var id = $button.attr("data-id");
-            var index = $button.attr("data-item-index");
+    checkButtonState: function(button) {
 
-            if (!id) return;
+      var $button = $(button);
+      var id = $button.attr("data-id");
+      var index = $button.attr("data-item-index");
 
-            // get the button data
-            var items = this.model.getNavigationData();
-            var data = items[index];
+      if (!id) return;
 
-            // rerender the button
-            var $buttonRendered = $(Handlebars.partials['quicknav-item'](data));
-            if ($buttonRendered.length === 0) {
-                $button.remove();
-                return;
-            }
+      // get the button data
+      var items = this.model.getNavigationData();
+      var data = items[index];
 
-            // get button attribute names from current and rerendered
-            var renderedAttrs = getAttributes($buttonRendered);
-            var attrs = getAttributes($button);
-            var renderedAttrNames = _.keys(renderedAttrs);
-            var attrNames = _.keys(attrs);
+      // rerender the button
+      var $buttonRendered = $(Handlebars.partials['quicknav-item'](data));
+      if ($buttonRendered.length === 0) {
+        $button.remove();
+        return;
+      }
 
-            // remove redundant attributes
-            var removeAttrNames = _.difference(attrNames, renderedAttrNames);
-            removeAttrNames.forEach(function(name) {
-                $button.removeAttr(name);
-            });
+      // get button attribute names from current and rerendered
+      var renderedAttrs = getAttributes($buttonRendered);
+      var attrs = getAttributes($button);
+      var renderedAttrNames = _.keys(renderedAttrs);
+      var attrNames = _.keys(attrs);
 
-            // update remaining attributes
-            $button.attr(renderedAttrs);
+      // remove redundant attributes
+      var removeAttrNames = _.difference(attrNames, renderedAttrNames);
+      removeAttrNames.forEach(function(name) {
+        $button.removeAttr(name);
+      });
 
-            // update button text
-            $button.html($buttonRendered.html());
+      // update remaining attributes
+      $button.attr(renderedAttrs);
 
-        },
+      // update button text
+      $button.html($buttonRendered.html());
 
-        onButtonClick: function(event) {
+    },
 
-            var $target = $(event.currentTarget);
-            var isLocked = $target.hasClass("locked");
-            var isSelected = $target.hasClass("selected");
+    onButtonClick: function(event) {
 
-            if (isLocked || isSelected) return;
+      var $target = $(event.currentTarget);
+      var isLocked = $target.hasClass("locked");
+      var isSelected = $target.hasClass("selected");
 
-            var id = $target.attr("data-id");
-            var index = $target.attr("data-item-index");
+      if (isLocked || isSelected) return;
 
-            switch (id) {
-                case "":
-                    var data = this.model.getData();
-                    try {
-                        var execute = new Function(data._items[index]._onClick||"");
-                        execute();
-                    } catch (err) {
-                        Adapt.log.error(err);
-                    }
-                    break;
-                default:
-                    this.navigateTo(id);
-                    break;
-            }
-        },
+      var id = $target.attr("data-id");
+      var index = $target.attr("data-item-index");
 
-        onButtonTooltip: function(event) {
+      switch (id) {
+        case "":
+          var data = this.model.getData();
+          try {
+            var execute = new Function(data._items[index]._onClick||"");
+            execute();
+          } catch (err) {
+            Adapt.log.error(err);
+          }
+          break;
+        default:
+          this.navigateTo(id);
+          break;
+      }
+    },
 
-            var $target = $(event.currentTarget);
-            var id = $target.attr("data-id");
+    onButtonTooltip: function(event) {
 
-            if (!id) {
-                return;
-            }
+      var $target = $(event.currentTarget);
+      var id = $target.attr("data-id");
 
-            // If tooltip isn't defined allow the event to propogate down to the document
-            if (!$target.attr("tooltip")) {
-                return;
-            }
+      if (!id) {
+        return;
+      }
 
-            // Don't allow event to propogate, to stop the document over events
-            event.stopPropagation();
+      // If tooltip isn't defined allow the event to propogate down to the document
+      if (!$target.attr("tooltip")) {
+        return;
+      }
 
-            // If this tooltip is already rendered then skip
-            if (Adapt.tooltip) {
+      // Don't allow event to propogate, to stop the document over events
+      event.stopPropagation();
 
-                var type = $target.attr("data-type");
-                var index = $target.attr("data-index");
-                var isCurrentTooltip = (Adapt.tooltip.type === type) && (Adapt.tooltip.index === index);
+      // If this tooltip is already rendered then skip
+      if (Adapt.tooltip) {
 
-                if (isCurrentTooltip) {
-                    return;
-                }
+        var type = $target.attr("data-type");
+        var index = $target.attr("data-index");
+        var isCurrentTooltip = (Adapt.tooltip.type === type) && (Adapt.tooltip.index === index);
 
-            }
-
-            var tooltip = new Tooltip({
-                $target: $target,
-                model: Adapt.findById(id)
-            });
-
-            this.$(".quicknav-inner").append(tooltip.$el);
-
-        },
-
-        navigateTo: function(id) {
-
-            var isCourse = (id === Adapt.course.get("_id"));
-            var hash = "#" + (isCourse ? "/" : "/id/" + id);
-
-            Backbone.history.navigate(hash, { trigger:true, "replace": false });
-
+        if (isCurrentTooltip) {
+          return;
         }
 
-    });
+      }
 
-    return View;
+      var tooltip = new Tooltip({
+        $target: $target,
+        model: Adapt.findById(id)
+      });
+
+      this.$(".quicknav-inner").append(tooltip.$el);
+
+    },
+
+    navigateTo: function(id) {
+
+      var isCourse = (id === Adapt.course.get("_id"));
+      var hash = "#" + (isCourse ? "/" : "/id/" + id);
+
+      Backbone.history.navigate(hash, { trigger:true, "replace": false });
+
+    }
+
+  });
+
+  return View;
 
 });
