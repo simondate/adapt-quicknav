@@ -16,8 +16,8 @@ define([
   var View = ComponentView.extend({
 
     events: {
-      "click button": "onButtonClick",
-      "mouseover button": "onButtonTooltip"
+      "click .js-quicknav-btn": "onButtonClick",
+      "mouseover .js-quicknav-btn": "onButtonTooltip"
     },
 
     preRender: function() {
@@ -115,8 +115,8 @@ define([
     onButtonClick: function(event) {
 
       var $target = $(event.currentTarget);
-      var isLocked = $target.hasClass("locked");
-      var isSelected = $target.hasClass("selected");
+      var isLocked = $target.hasClass("is-locked");
+      var isSelected = $target.hasClass("is-selected");
 
       if (isLocked || isSelected) return;
 
@@ -174,7 +174,7 @@ define([
         model: Adapt.findById(id)
       });
 
-      this.$(".quicknav-inner").append(tooltip.$el);
+      this.$(".quicknav__inner").append(tooltip.$el);
 
     },
 

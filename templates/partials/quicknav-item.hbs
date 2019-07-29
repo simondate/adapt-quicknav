@@ -1,32 +1,42 @@
 {{import_globals}}
 {{#if _isEnabled}}
 <button
+  class="btn-text is-generic quicknav__btn{{#if _isHidden}} is-hidden is-disabled{{/if}}{{#if _isLocked}} is-locked is-disabled{{/if}}{{#if _classes}} {{_classes}}{{/if}}{{#if _iconClass}} has-icon{{/if}} js-quicknav-btn"
   role="link"
   data-type="{{type}}"
   data-id="{{_id}}"
   data-item-index="{{_index}}"
-  class="{{#if _isHidden}}hidden disabled {{/if}}{{#if _isLocked}}locked disabled {{/if}}{{#if _classes}}{{_classes}}{{/if}}"
-  {{#any _isHidden _isLocked}}disabled="disabled" {{/any}}
+  {{#any _isHidden _isLocked}} disabled="disabled"{{/any}}
   aria-label="{{{compile ariaLabel this}}} {{#if _isLocked}}{{@root/_globals._accessibility._ariaLabels.locked}}{{else if _isComplete}}{{@root/_globals._accessibility._ariaLabels.complete}}{{else}}{{@root/_globals._accessibility._ariaLabels.incomplete}}{{/if}}"
   tooltip="{{#if _showTooltip}}{{{compile tooltip this}}}{{/if}}">
 
-  {{#unless _alignIconRight}}
-  {{#if _iconClass}}
-  <span class="icon-left icon {{_iconClass}}"></span>
-  {{/if}}
-  {{/unless}}
+  <div class="quicknav__btn-inner">
 
-  {{#if text}}
-  <div class="text">
-    {{{compile text this}}}
+    {{#unless _alignIconRight}}
+    {{#if _iconClass}}
+    <div class="quicknav__btn-icon">
+      <div class="icon {{_iconClass}}"></div>
+    </div>
+    {{/if}}
+    {{/unless}}
+
+    {{#if text}}
+    <div class="quicknav__btn-text">
+      <div class="quicknav__btn-text-inner">
+        {{{compile text this}}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if _alignIconRight}}
+    {{#if _iconClass}}
+    <div class="quicknav__btn-icon">
+      <div class="icon {{_iconClass}}"></div>
+    </div>
+    {{/if}}
+    {{/if}}
+
   </div>
-  {{/if}}
-
-  {{#if _alignIconRight}}
-  {{#if _iconClass}}
-  <span class="icon-right icon {{_iconClass}}"></span>
-  {{/if}}
-  {{/if}}
 
 </button>
 {{/if}}

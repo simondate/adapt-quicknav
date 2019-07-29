@@ -4,7 +4,7 @@ define([
 
   var Tooltip = Backbone.View.extend({
 
-    className: "tooltip",
+    className: "quicknav__tooltip",
 
     initialize: function(options) {
 
@@ -73,13 +73,14 @@ define([
 
       var buttonPosition = this.$target.position();
 
-      var triangleMarginLeft = parseInt(this.$(".triangle").css("margin-left"));
-      var triangleHalfWidth = (this.$(".triangle").outerWidth() / 2);
-      var triangleOverhang = (triangleMarginLeft+triangleHalfWidth);
+      // var triangleMarginLeft = parseInt(this.$(".quicknav__triangle").css("margin-left"));
+      // var triangleHalfWidth = (this.$(".quicknav__triangle").outerWidth() / 2);
+      // var triangleOverhang = (triangleMarginLeft+triangleHalfWidth);
 
       var buttonHalfWidth = (this.$target.outerWidth(true) / 2);
       var buttonCenterLeft = (buttonPosition.left+buttonHalfWidth);
-      var buttonAdjustedLeft = (buttonCenterLeft-triangleOverhang);
+      // var buttonAdjustedLeft = (buttonCenterLeft-triangleOverhang);
+      var buttonAdjustedLeft = buttonCenterLeft;
 
       var position = {
         "top": buttonPosition.top,
@@ -99,15 +100,16 @@ define([
       var isOverflowingLeft = (position.left <= parentLeft);
 
       var leftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? overflowLeft : 0;
+      // var leftOffset = 0;
 
       this.$el.css({
         top: position.top,
         left: position.left - leftOffset - 1
       });
 
-      this.$el.find(".triangle").css({
-        left: leftOffset
-      });
+      // this.$el.find(".quicknav__triangle").css({
+      //   left: leftOffset
+      // });
 
     },
 
