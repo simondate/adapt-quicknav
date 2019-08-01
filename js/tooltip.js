@@ -72,44 +72,37 @@ define([
       if (this.isRemoved) return;
 
       var buttonPosition = this.$target.position();
-
-      // var triangleMarginLeft = parseInt(this.$(".quicknav__triangle").css("margin-left"));
-      // var triangleHalfWidth = (this.$(".quicknav__triangle").outerWidth() / 2);
-      // var triangleOverhang = (triangleMarginLeft+triangleHalfWidth);
-
-      var buttonHalfWidth = (this.$target.outerWidth(true) / 2);
+      var buttonWidth = this.$target.outerWidth(true);
+      var buttonHalfWidth = (buttonWidth / 2);
       var buttonCenterLeft = (buttonPosition.left+buttonHalfWidth);
-      // var buttonAdjustedLeft = (buttonCenterLeft-triangleOverhang);
-      var buttonAdjustedLeft = buttonCenterLeft;
 
-      var position = {
+      var tooltipWidth = this.$el.outerWidth(true);
+      var tooltipHalfWidth = tooltipWidth / 2;
+
+      var tooltipCenter = {
         "top": buttonPosition.top,
-        "left": buttonAdjustedLeft,
-        "right": this.$el.outerWidth() + buttonAdjustedLeft
+        "left": buttonCenterLeft
       };
 
       var $offsetParent = this.$el.offsetParent();
+      var parentWidth = $offsetParent.innerWidth();
 
-      var parentLeft = $offsetParent.offset().left;
-      var parentRight = parentLeft + $offsetParent.innerWidth();
+      var overflowRight = parentWidth - (tooltipCenter.left + tooltipHalfWidth);
+      var overflowLeft = tooltipCenter.left - tooltipHalfWidth;
 
-      var overflowRight = position.right - parentRight;
-      var overflowLeft = position.left - parentLeft;
+      var isOverflowingRight = (overflowRight < 0);
+      var isOverflowingLeft = (overflowLeft < 0);
 
-      var isOverflowingRight = (position.right > parentRight);
-      var isOverflowingLeft = (position.left <= parentLeft);
-
-      var leftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? overflowLeft : 0;
-      // var leftOffset = 0;
+      var leftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? -overflowLeft : 0;
 
       this.$el.css({
-        top: position.top,
-        left: position.left - leftOffset - 1
+        top: tooltipCenter.top,
+        left: tooltipCenter.left + leftOffset
       });
 
-      // this.$el.find(".quicknav__triangle").css({
-      //   left: leftOffset
-      // });
+      this.$el.find(".quicknav__triangle").css({
+        left: tooltipHalfWidth - leftOffset
+      });
 
     },
 

@@ -144,10 +144,6 @@ define([
       var $target = $(event.currentTarget);
       var id = $target.attr("data-id");
 
-      if (!id) {
-        return;
-      }
-
       // If tooltip isn't defined allow the event to propogate down to the document
       if (!$target.attr("tooltip")) {
         return;
@@ -155,6 +151,7 @@ define([
 
       // Don't allow event to propogate, to stop the document over events
       event.stopPropagation();
+
 
       // If this tooltip is already rendered then skip
       if (Adapt.tooltip) {
@@ -171,10 +168,10 @@ define([
 
       var tooltip = new Tooltip({
         $target: $target,
-        model: Adapt.findById(id)
+        model: !id ? new Backbone.Model({}) : Adapt.findById(id)
       });
 
-      this.$(".quicknav__inner").append(tooltip.$el);
+      this.$(".quicknav__widget").append(tooltip.$el);
 
     },
 
