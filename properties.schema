@@ -90,7 +90,7 @@
             "text": {
               "type": "string",
               "required": true,
-              "default": "< Return",
+              "default": "Return",
               "inputType": "Text",
               "validators": [],
               "translatable": true
@@ -108,7 +108,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -132,7 +132,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -172,7 +172,7 @@
             "text": {
               "type": "string",
               "required": true,
-              "default": "< Previous",
+              "default": "Previous",
               "inputType": "Text",
               "validators": [],
               "translatable": true
@@ -190,7 +190,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -262,7 +262,7 @@
             "text": {
               "type": "string",
               "required": true,
-              "default": "Go to main menu",
+              "default": "Menu",
               "inputType": "Text",
               "validators": [],
               "translatable": true
@@ -280,7 +280,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -312,7 +312,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -370,7 +370,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -402,7 +402,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -442,7 +442,7 @@
             "text": {
               "type": "string",
               "required": true,
-              "default": "Next >",
+              "default": "Next",
               "inputType": "Text",
               "validators": [],
               "translatable": true
@@ -460,7 +460,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -492,7 +492,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -550,7 +550,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show tool tip",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
@@ -582,7 +582,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
