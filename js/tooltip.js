@@ -3,7 +3,7 @@ define([
 ], function(Adapt) {
 
     var Tooltip = Backbone.View.extend({
-        
+
         className: "tooltip",
 
         initialize: function(options) {
@@ -11,7 +11,7 @@ define([
             this.removeOtherTooltips();
             this.setupEventListeners();
             this.setupData(options);
-            
+
             this.render();
 
         },
@@ -89,24 +89,26 @@ define([
 
             var $offsetParent = this.$el.offsetParent();
 
-            var parentLeft = $offsetParent.offset().left;
-            var parentRight = parentLeft + $offsetParent.innerWidth();
+            var parentLeft = 0;
+            var parentRight = $offsetParent.innerWidth();
 
             var overflowRight = position.right - parentRight;
             var overflowLeft = position.left - parentLeft;
 
             var isOverflowingRight = (position.right > parentRight);
             var isOverflowingLeft = (position.left <= parentLeft);
-            
-            var leftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? overflowLeft : 0;
-            
-            this.$el.css({
+
+            var overflowLeftOffset = isOverflowingRight ? overflowRight : isOverflowingLeft ? overflowLeft : 0;
+
+            var relativeNewPosition = {
                 top: position.top,
-                left: position.left - leftOffset - 1
-            });
+                left: position.left - overflowLeftOffset - 1
+            };
+
+            this.$el.css(relativeNewPosition);
 
             this.$el.find(".triangle").css({
-                left: leftOffset
+                left: overflowLeftOffset
             });
 
         },

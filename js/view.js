@@ -14,7 +14,7 @@ define([
     }
 
     var View = ComponentView.extend({
-       
+
         events: {
             "click button": "onButtonClick",
             "mouseover button": "onButtonTooltip"
@@ -142,7 +142,7 @@ define([
         onButtonTooltip: function(event) {
 
             var $target = $(event.currentTarget);
-            var id = $target.attr("data-id");
+            var id = $target.attr("data-id") || this.model.getCurrentPage().get("_id");
 
             if (!id) {
                 return;
