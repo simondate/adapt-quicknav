@@ -222,7 +222,7 @@
               "type": "boolean",
               "required": true,
               "title": "Show",
-              "default": true,
+              "default": false,
               "inputType": "Checkbox",
               "validators": []
             },
