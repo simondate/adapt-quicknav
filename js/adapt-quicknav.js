@@ -16,7 +16,7 @@ define([
 		},
 
 		menuStructure: {},
-		
+
 		onRootClicked: function() {
 			this.navigateTo("/");
 		},
@@ -36,6 +36,10 @@ define([
 			this.navigateTo(params.pages[indexOfPrevPage]);
 		},
 
+		onCloseClicked: function() {
+			top.window.close();
+		},
+
 		onNextClicked: function() {
 			var params = this.getParameters();
 
@@ -52,7 +56,7 @@ define([
 
 			var hash = "#" + (id === "/" ? id : "/id/" + id);
 			Backbone.history.navigate(hash, {
-				trigger: true, 
+				trigger: true,
 				replace: false
 			});
 		},
@@ -179,7 +183,7 @@ define([
 			if (pages === undefined) return;
 
 			var indexOfPage = _.indexOf(pages, this.state.currentPage.model.get("_id"));
-			
+
 			if (this.config._isContinuous == "local" || this.config._isContinuous == "global" ) {
 				if (indexOfPage === 0 && indexOfPage == pages.length - 1 && this.config._isContinuous == "local") {
 					this.state.isFirstPage = true;
@@ -254,7 +258,7 @@ define([
 				element.append(quickNavView.$el);
 			}
 		}
-		
+
 		quickNavView.delegateEvents();
 	});
 

@@ -7,7 +7,7 @@
     "_global": { //change the flow for global continuous
         "_pageNext":"co-10", // remove if to follow normal flow
         "_pagePrevious": "co-10" // remove if to follow normal flow
-    }, 
+    },
     "_buttons": {
         "_root": {
             "_isHidden": false,
@@ -20,6 +20,10 @@
         "_previous": {
             "_isHidden": false,
             "text": "< Previous"
+        },
+        "_close": {
+          "_isHidden": true,
+          "text": "Close course"
         },
         "_next": {
             "_isHidden": false,

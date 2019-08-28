@@ -16,7 +16,8 @@ define([
 			"click #root": "onRootClicked",
 			"click #previous": "onPreviousClicked",
 			"click #up": "onUpClicked",
-			"click #next": "onNextClicked"
+			"click #next": "onNextClicked",
+			"click #close": "onCloseClicked"
 		},
 
 		initialize: function() {
@@ -45,7 +46,7 @@ define([
 		setLocking: function() {
 
 			var nextModel = this.getNextPageModel();
-			if (nextModel && nextModel.get("_isLocked")) {
+			if (nextModel.get("_isLocked")) {
 				this.listenTo(nextModel, "change:_isLocked", _.bind(function(model, val) {
 					this.toggleLock("#next", val);
 				}, this));
@@ -53,7 +54,7 @@ define([
 			}
 
 			var previousModel = this.getPrevPageModel();
-			if (previousModel && previousModel.get("_isLocked")) {
+			if (previousModel.get("_isLocked")) {
 				this.listenTo(previousModel, "change:_isLocked", _.bind(function(model, val) {
 					this.toggleLock("#previous", val);
 				}, this));
@@ -114,6 +115,10 @@ define([
 
 		onNextClicked: function() {
 			this.parent.onNextClicked();
+		},
+
+		onCloseClicked: function() {
+			this.parent.onCloseClicked();
 		},
 
 		onPageCompleted: function() {
