@@ -9,7 +9,7 @@ define([
 ], function(Adapt) {
 
 	var QuickNavView = Backbone.View.extend({
-		
+
 		className: "block quicknav",
 
 		events: {
@@ -33,7 +33,7 @@ define([
 				} else {
 					this.listenTo(currentPageModel, "change:_isComplete", this.onPageCompleted);
 				}
-			}			
+			}
 		},
 
 		render: function() {
@@ -45,7 +45,7 @@ define([
 		setLocking: function() {
 
 			var nextModel = this.getNextPageModel();
-			if (nextModel.get("_isLocked")) {
+			if (nextModel && nextModel.get("_isLocked")) {
 				this.listenTo(nextModel, "change:_isLocked", _.bind(function(model, val) {
 					this.toggleLock("#next", val);
 				}, this));
@@ -53,7 +53,7 @@ define([
 			}
 
 			var previousModel = this.getPrevPageModel();
-			if (previousModel.get("_isLocked")) {
+			if (previousModel && previousModel.get("_isLocked")) {
 				this.listenTo(previousModel, "change:_isLocked", _.bind(function(model, val) {
 					this.toggleLock("#previous", val);
 				}, this));
