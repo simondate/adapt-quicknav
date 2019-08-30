@@ -14,7 +14,7 @@ define([
     }
 
     var View = ComponentView.extend({
-       
+
         events: {
             "click button": "onButtonClick",
             "mouseover button": "onButtonTooltip"

@@ -3,7 +3,7 @@ define([
 ], function(Adapt) {
 
     var Tooltip = Backbone.View.extend({
-        
+
         className: "tooltip",
 
         initialize: function(options) {
@@ -11,7 +11,7 @@ define([
             this.removeOtherTooltips();
             this.setupEventListeners();
             this.setupData(options);
-            
+
             this.render();
 
         },
