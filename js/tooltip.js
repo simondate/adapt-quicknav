@@ -79,12 +79,14 @@ define([
 
             var buttonHalfWidth = (this.$target.outerWidth(true) / 2);
             var buttonCenterLeft = (buttonPosition.left+buttonHalfWidth);
-            var buttonAdjustedLeft = (buttonCenterLeft-triangleOverhang);
+
+            var textWidth = this.$el.outerWidth();
+            var textHalfWidth = textWidth / 2;
 
             var position = {
                 "top": buttonPosition.top,
-                "left": buttonAdjustedLeft,
-                "right": this.$el.outerWidth() + buttonAdjustedLeft
+                "left": buttonCenterLeft - textHalfWidth,
+                "right": textWidth + buttonCenterLeft - textHalfWidth
             };
 
             var $offsetParent = this.$el.offsetParent();
@@ -108,7 +110,7 @@ define([
             this.$el.css(relativeNewPosition);
 
             this.$el.find(".triangle").css({
-                left: overflowLeftOffset
+                left: textHalfWidth - triangleOverhang + overflowLeftOffset
             });
 
         },
