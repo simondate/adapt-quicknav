@@ -55,6 +55,7 @@ define([
 
             var order = 0;
             var item;
+            var currentPageComplete = buttonTypeModels._page.get('_isComplete');
 
             for (var attrName in buttons) {
 
@@ -92,7 +93,8 @@ define([
                 _.extend(item, buttonConfig, {
                     type: attrName,
                     index: 0,
-                    order: order++
+                    order: order++,
+                    locked: item._isLocked || (buttonConfig._lockUntilPageComplete && !currentPageComplete)
                 });
                 data.push(item);
 

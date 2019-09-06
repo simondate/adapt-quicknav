@@ -17,6 +17,7 @@
         "_buttons": {
             "_returnToPreviousLocation": {
                 "_isEnabled": false,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
@@ -40,6 +41,7 @@
             },
             "_root": {
                 "_isEnabled": true,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
@@ -52,6 +54,7 @@
             },
             "_up": {
                 "_isEnabled": true,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
@@ -88,6 +91,7 @@
             },
             "_close": {
                 "_isEnabled": true,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
