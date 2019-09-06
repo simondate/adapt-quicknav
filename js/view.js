@@ -39,7 +39,7 @@ define([
 
         render: function() {
 
-            var template = Handlebars.templates['quicknav'];
+            var template = Handlebars.templates.quicknav;
             var data = this.model.getData();
 
             this.$el.html(template(data));
