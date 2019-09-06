@@ -7,12 +7,12 @@ define([
 
         defaults: function() {
 
-            return $.extend({}, _.result(ComponentModel.prototype, "defaults"), {
-                "_isOptional": true,
-                "_isComplete": true,
-                "_isInteractionComplete": true,
-                "_pageLevelProgress": {
-                    "_isEnabled": false
+            return $.extend({}, _.result(ComponentModel.prototype, 'defaults'), {
+                _isOptional: true,
+                _isComplete: true,
+                _isInteractionComplete: true,
+                _pageLevelProgress: {
+                    _isEnabled: false
                 }
             });
 
@@ -33,16 +33,16 @@ define([
             */
 
             var buttonTypeModels = {
-                "_returnToPreviousLocation": this.getReturnToPreviousLocation(),
-                "_page": this.getCurrentPage(),
-                "_up": this.getCurrentMenu(),
-                "_root": Adapt.course,
-                "_next": this.getNextPage(),
-                "_previous": this.getPrevPage(),
-                "_sibling": this.getSiblingPages(),
-                "_close": new Backbone.Model({
-                    "_id": "",
-                    "_onClick": "top.window.close();"
+                _returnToPreviousLocation: this.getReturnToPreviousLocation(),
+                _page: this.getCurrentPage(),
+                _up: this.getCurrentMenu(),
+                _root: Adapt.course,
+                _next: this.getNextPage(),
+                _previous: this.getPrevPage(),
+                _sibling: this.getSiblingPages(),
+                _close: new Backbone.Model({
+                    _id: '',
+                    _onClick: 'top.window.close();'
                 })
             };
 
@@ -62,7 +62,7 @@ define([
                 var buttonConfig = buttons[attrName];
                 var buttonModel = buttonTypeModels[attrName];
 
-                if (attrName === "_sibling") {
+                if (attrName === '_sibling') {
 
                     // Skip if only one sibling
                     if (buttonModel.length <= 1) continue;
@@ -87,8 +87,8 @@ define([
                 // Find buttonModel from config._customRouteId if not found in defined type
                 if (buttonConfig._customRouteId) buttonModel = Adapt.findById(buttonConfig._customRouteId);
 
-                // Convert found buttonModel to json if exists or create an "undefined" json
-                item = buttonModel ? buttonModel.toJSON() : { "_isHidden": true };
+                // Convert found buttonModel to json if exists or create an 'undefined' json
+                item = buttonModel ? buttonModel.toJSON() : { '_isHidden': true };
 
                 _.extend(item, buttonConfig, {
                     type: attrName,
@@ -123,8 +123,8 @@ define([
             for (var i = 0, l = parents.length; i < l; i++) {
 
                 var model = parents[i];
-                switch (model.get("_type")) {
-                    case "page":
+                switch (model.get('_type')) {
+                    case 'page':
                         return model;
                 }
 
@@ -138,9 +138,9 @@ define([
             for (var i = 0, l = parents.length; i < l; i++) {
 
                 var model = parents[i];
-                switch (model.get("_type")) {
-                    case "menu":
-                    case "course":
+                switch (model.get('_type')) {
+                    case 'menu':
+                    case 'course':
                         return model;
                 }
 
@@ -154,7 +154,7 @@ define([
             var siblingModels = currentMenu.getAllDescendantModels(true);
 
             siblingModels = _.filter(siblingModels, function(model) {
-                return (model.get("_type") === "page" && model.get("_isAvailable"));
+                return (model.get('_type') === 'page' && model.get('_isAvailable'));
             });
 
             return siblingModels;
@@ -164,7 +164,7 @@ define([
         getPrevPage: function() {
 
             var currentPage = this.getCurrentPage();
-            var currentPageId = currentPage.get("_id");
+            var currentPageId = currentPage.get('_id');
 
             var pages = this.getPages();
 
@@ -172,10 +172,10 @@ define([
             for (var i = pages.length-1; i > -1; i--) {
 
                 var page = pages[i];
-                var isNotAvailable = !page.get("_isAvailable");
+                var isNotAvailable = !page.get('_isAvailable');
                 if (isNotAvailable) continue;
 
-                if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
+                if (!hasFoundCurrentPage && page.get('_id') === currentPageId) {
                     hasFoundCurrentPage = true;
                     continue;
                 }
@@ -193,7 +193,7 @@ define([
         getNextPage: function() {
 
             var currentPage = this.getCurrentPage();
-            var currentPageId = currentPage.get("_id");
+            var currentPageId = currentPage.get('_id');
 
             var pages = this.getPages();
 
@@ -201,10 +201,10 @@ define([
             for (var i = 0, l = pages.length; i < l; i++) {
 
                 var page = pages[i];
-                var isNotAvailable = !page.get("_isAvailable");
+                var isNotAvailable = !page.get('_isAvailable');
                 if (isNotAvailable) continue;
 
-                if (!hasFoundCurrentPage && page.get("_id") === currentPageId) {
+                if (!hasFoundCurrentPage && page.get('_id') === currentPageId) {
                     hasFoundCurrentPage = true;
                     continue;
                 }
@@ -221,18 +221,18 @@ define([
 
         getPages: function() {
 
-            var loopStyle = this.get("_loopStyle");
+            var loopStyle = this.get('_loopStyle');
 
             if (!loopStyle) return [];
 
             var loop = false;
             var descendants;
             switch (loopStyle) {
-                case "allPages":
+                case 'allPages':
                     loop = true;
                     descendants = Adapt.course.getAllDescendantModels(true);
                     break;
-                case "siblings":
+                case 'siblings':
                     loop = true;
                     /* falls through */
                 default:
@@ -246,7 +246,7 @@ define([
             }
 
             return _.filter(descendants, function(model) {
-                return model.get("_type") === "page";
+                return model.get('_type') === 'page';
             });
 
         }
