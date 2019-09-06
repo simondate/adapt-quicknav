@@ -67,9 +67,9 @@ define([
 
         checkButtonStates: function() {
 
-            this.$('button').each(_.bind(function(index, item) {
+            this.$('button').each(function(index, item) {
                 this.checkButtonState(item);
-            }, this));
+            }.bind(this));
 
         },
 
