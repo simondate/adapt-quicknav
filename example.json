@@ -101,8 +101,7 @@
                 "text": "Close",
                 "ariaLabel": "Close window",
                 "_showTooltip": false,
-                "tooltip": "Close window",
-                "_customRouteId": ""
+                "tooltip": "Close window"
             }
         }
     },
