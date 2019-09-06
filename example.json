@@ -10,9 +10,11 @@
         "displayTitle": "",
         "body": "",
         "instruction": "",
-        "_comment": "allPages = loop sequentially through all pages in course",
-        "_comment": "siblings = loop sequentially through all pages in current parent object",
-        "_comment": "none = disable previous and next buttons at start and end of the pages in the current parent object",
+        "_loopStyleComment": {
+            "allPages": "loop sequentially through all pages in course",
+            "siblings": "loop sequentially through all pages in current parent object",
+            "none": "disable previous and next buttons at start and end of the pages in the current parent object"
+        },
         "_loopStyle": "none",
         "_buttons": {
             "_returnToPreviousLocation": {
