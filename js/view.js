@@ -142,7 +142,8 @@ define([
         onButtonTooltip: function(event) {
 
             var $target = $(event.currentTarget);
-            var id = $target.attr('data-id');
+
+            var id = $target.attr('data-id') || this.model.getCurrentPage().get('_id');
 
             if (!id) {
                 return;
