@@ -31,6 +31,7 @@
             },
             "_previous": {
                 "_isEnabled": true,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
@@ -69,6 +70,7 @@
             },
             "_next": {
                 "_isEnabled": true,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
@@ -81,6 +83,7 @@
             },
             "_sibling": {
                 "_isEnabled": true,
+                "_lockUntilPageComplete": false,
                 "_order": 1,
                 "_classes": "",
                 "_iconClass": "",
