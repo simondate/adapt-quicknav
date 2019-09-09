@@ -74,7 +74,8 @@ define([
                         _.extend(item, buttonConfig, {
                             type: attrName,
                             index: index,
-                            order: order++
+                            order: order++,
+                            locked: item._isLocked || (buttonConfig._lockUntilPageComplete && !currentPageComplete)
                         });
                         data.push(item);
 
