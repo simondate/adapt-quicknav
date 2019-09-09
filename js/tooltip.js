@@ -51,7 +51,7 @@ define([
 
         render: function() {
 
-            var template = Handlebars.templates.quicknav-tooltip;
+            var template = Handlebars.templates['quicknav-tooltip'];
 
             this.$el.html(template(this.model.toJSON()));
             _.defer(this.postRender);
