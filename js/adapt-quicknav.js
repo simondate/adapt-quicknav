@@ -1,11 +1,10 @@
 define([
     'core/js/adapt',
     './model',
-    './view',
-    './lib/adaptModelExtension'
+    './view'
 ], function(Adapt, Model, View) {
-    
-    return Adapt.register("quicknav", {
+
+    return Adapt.register('quicknav', {
         model: Model,
         view: View
     });
