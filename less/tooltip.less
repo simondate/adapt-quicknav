@@ -10,6 +10,13 @@
     visibility: visible;
   }
 
+  &__tooltip-text {
+    padding: @item-padding / 2;
+    background-color: @item-color;
+    color: @item-color-inverted;
+    border-radius: 5px;
+  }
+
   &__triangle {
     position: relative;
     .transform(translateX(-50%));
@@ -24,7 +31,7 @@
     &:after {
       border-width: @item-padding (@item-padding / 2) 0 (@item-padding / 2); /* vary these values to change the angle of the vertex */
       border-style: solid;
-      border-color: red transparent transparent transparent;
+      border-color: @item-color transparent transparent transparent;
     }
   }
 }
