@@ -3,9 +3,15 @@
   {{> component}}
 
   <div class="component__widget quicknav__widget">
-    {{#each _items}}
-    {{> quicknav-item this}}
-    {{/each}}
+
+    <div class="quicknav__tooltip-container"></div>
+
+    <div class="quicknav__btn-container">
+      {{#each _items}}
+      {{> quicknav-item this}}
+      {{/each}}
+    </div>
+
   </div>
 
 </div>
