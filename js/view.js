@@ -16,30 +16,30 @@ define([
   var View = ComponentView.extend({
 
     events: {
-      "click .js-quicknav-btn": "onButtonClick",
-      "mouseover .js-quicknav-btn": "onButtonTooltip"
+      'click .js-quicknav-btn': 'onButtonClick',
+      'mouseover .js-quicknav-btn': 'onButtonTooltip'
     },
 
     preRender: function() {
 
       Adapt.trigger(this.constructor.type + 'View:preRender', this);
 
-      this.$el.addClass("quicknav " + this.model.get('_id'));
+      this.$el.addClass('quicknav ' + this.model.get('_id'));
 
-      _.bindAll(this, "postRender", "checkButtonStates");
+      _.bindAll(this, 'postRender', 'checkButtonStates');
 
       this.setCompletionStatus();
 
-      this.listenTo(Adapt, "remove", this.remove);
+      this.listenTo(Adapt, 'remove', this.remove);
       this.listenTo(Adapt.contentObjects, {
-        "change:_isComplete change:_isLocked": this.onContentObjectComplete
+        'change:_isComplete change:_isLocked': this.onContentObjectComplete
       });
 
     },
 
     render: function() {
 
-      var template = Handlebars.templates["quicknav"];
+      var template = Handlebars.templates.quicknav;
       var data = this.model.getData();
 
       this.$el.html(template(data));
@@ -67,17 +67,17 @@ define([
 
     checkButtonStates: function() {
 
-      this.$("button").each(_.bind(function(index, item) {
+      this.$('button').each(function(index, item) {
         this.checkButtonState(item);
-      }, this));
+      }.bind(this));
 
     },
 
     checkButtonState: function(button) {
 
       var $button = $(button);
-      var id = $button.attr("data-id");
-      var index = $button.attr("data-item-index");
+      var id = $button.attr('data-id');
+      var index = $button.attr('data-item-index');
 
       if (!id) return;
 
@@ -115,19 +115,19 @@ define([
     onButtonClick: function(event) {
 
       var $target = $(event.currentTarget);
-      var isLocked = $target.hasClass("is-locked");
-      var isSelected = $target.hasClass("is-selected");
+      var isLocked = $target.hasClass('is-locked');
+      var isSelected = $target.hasClass('is-selected');
 
       if (isLocked || isSelected) return;
 
-      var id = $target.attr("data-id");
-      var index = $target.attr("data-item-index");
+      var id = $target.attr('data-id');
+      var index = $target.attr('data-item-index');
 
       switch (id) {
-        case "":
+        case '':
           var data = this.model.getData();
           try {
-            var execute = new Function(data._items[index]._onClick||"");
+            var execute = new Function(data._items[index]._onClick||'');
             execute();
           } catch (err) {
             Adapt.log.error(err);
@@ -142,10 +142,11 @@ define([
     onButtonTooltip: function(event) {
 
       var $target = $(event.currentTarget);
-      var id = $target.attr("data-id");
+
+      var id = $target.attr('data-id') || this.model.getCurrentPage().get('_id');
 
       // If tooltip isn't defined allow the event to propogate down to the document
-      if (!$target.attr("tooltip")) {
+      if (!$target.attr('tooltip')) {
         return;
       }
 
@@ -156,8 +157,8 @@ define([
       // If this tooltip is already rendered then skip
       if (Adapt.tooltip) {
 
-        var type = $target.attr("data-type");
-        var index = $target.attr("data-index");
+        var type = $target.attr('data-type');
+        var index = $target.attr('data-index');
         var isCurrentTooltip = (Adapt.tooltip.type === type) && (Adapt.tooltip.index === index);
 
         if (isCurrentTooltip) {
@@ -171,16 +172,16 @@ define([
         model: !id ? new Backbone.Model({}) : Adapt.findById(id)
       });
 
-      this.$(".quicknav__widget").append(tooltip.$el);
+      this.$('.quicknav__tooltip-container').append(tooltip.$el);
 
     },
 
     navigateTo: function(id) {
 
-      var isCourse = (id === Adapt.course.get("_id"));
-      var hash = "#" + (isCourse ? "/" : "/id/" + id);
+      var isCourse = (id === Adapt.course.get('_id'));
+      var hash = '#' + (isCourse ? '/' : '/id/' + id);
 
-      Backbone.history.navigate(hash, { trigger:true, "replace": false });
+      Backbone.history.navigate(hash, { trigger: true, replace: false });
 
     }
 

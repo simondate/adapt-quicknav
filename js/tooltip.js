@@ -4,7 +4,7 @@ define([
 
   var Tooltip = Backbone.View.extend({
 
-    className: "quicknav__tooltip",
+    className: 'quicknav__tooltip',
 
     initialize: function(options) {
 
@@ -18,22 +18,22 @@ define([
 
     removeOtherTooltips: function() {
 
-      Adapt.trigger("tooltip:remove");
+      Adapt.trigger('tooltip:remove');
       Adapt.tooltip = this;
 
     },
 
     setupEventListeners: function() {
 
-      _.bindAll(this, "remove", "postRender", "show");
+      _.bindAll(this, 'remove', 'postRender', 'show');
       this.show = _.debounce(this.show, 17);
 
-      $(document).on("mouseover", this.remove);
+      $(document).on('mouseover', this.remove);
 
       this.listenTo(Adapt, {
-        "device:resize": this.checkPosition,
-        "tooltip:remove": this.remove,
-        "remove": this.remove
+        'device:resize': this.checkPosition,
+        'tooltip:remove': this.remove,
+        remove: this.remove
       });
 
     },
@@ -41,17 +41,17 @@ define([
     setupData: function(options) {
 
       this.$target = options.$target;
-      this.id = this.$target.attr("data-id");
-      this.type = this.$target.attr("data-type");
-      this.index = this.$target.attr("data-index");
+      this.id = this.$target.attr('data-id');
+      this.type = this.$target.attr('data-type');
+      this.index = this.$target.attr('data-index');
 
-      this.model.set("tooltip", this.$target.attr("tooltip"));
+      this.model.set('tooltip', this.$target.attr('tooltip'));
 
     },
 
     render: function() {
 
-      var template = Handlebars.templates["quicknav-tooltip"];
+      var template = Handlebars.templates['quicknav-tooltip'];
 
       this.$el.html(template(this.model.toJSON()));
       _.defer(this.postRender);
@@ -80,8 +80,8 @@ define([
       var tooltipHalfWidth = tooltipWidth / 2;
 
       var tooltipCenter = {
-        "top": buttonPosition.top,
-        "left": buttonCenterLeft
+        top: buttonPosition.top,
+        left: buttonCenterLeft
       };
 
       var $offsetParent = this.$el.offsetParent();
@@ -100,7 +100,7 @@ define([
         left: tooltipCenter.left + leftOffset
       });
 
-      this.$el.find(".quicknav__triangle").css({
+      this.$el.find('.quicknav__triangle').css({
         left: tooltipHalfWidth - leftOffset
       });
 
@@ -110,7 +110,7 @@ define([
 
       if (this.isRemoved) return;
 
-      this.$el.addClass("show");
+      this.$el.addClass('show');
 
     },
 
@@ -121,7 +121,7 @@ define([
       delete this.$target;
       delete Adapt.tooltip;
 
-      $(document).off("mouseover", this.onBodyMouseOver);
+      $(document).off('mouseover', this.onBodyMouseOver);
       Backbone.View.prototype.remove.call(this);
 
     }

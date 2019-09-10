@@ -4,7 +4,7 @@ define([
   './view'
 ], function(Adapt, Model, View) {
 
-  return Adapt.register("quicknav", {
+  return Adapt.register('quicknav', {
     model: Model,
     view: View
   });
