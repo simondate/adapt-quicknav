@@ -224,7 +224,7 @@
                     "_close": {
                       "type": "object",
                       "required": true,
-                      "title": "Next button",
+                      "title": "Close button",
 
                       "properties": {
                         "_isHidden": {
